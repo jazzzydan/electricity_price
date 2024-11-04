@@ -1,14 +1,28 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import DateSwitcher from "./DateSwitcher.svelte";
+//todo remove ;
+  //TODO: fetcher component. apiUrl creation move to fetcher
+  //TODO: chart component that consists of coloumn component
 
-  let data = [];
-  let loading = true;
-  let error = null;
+  interface PricePair {
+    timestamp: number, price: number
+  }
 
-  onMount(async () => {
+  type CountryCode = 'ee'|'lv'|'lt'|'fi'
+
+  let data: Record<CountryCode, Array<PricePair>> = {}
+  let error: string | undefined
+  let loading = true
+  let apiUrl: string
+
+  async function fetchData() {
+    loading = true
+    error = null
+
+    if (!apiUrl) return;
+
     try {
-      const response = await fetch();
+      const response = await fetch(apiUrl);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -18,27 +32,26 @@
     } finally {
       loading = false;
     }
-  });
+  }
+
+  function handleApiUrlChange(newApiUrl: string) {
+    apiUrl = newApiUrl;
+    fetchData();
+  }
 
 </script>
 
 <main>
   <div>
-    <DateSwitcher />
+    <DateSwitcher onApiUrlChange={handleApiUrlChange}/>
   </div>
-
   <div >
-    {#if loading}
-      <p>Loading...</p>
-    {:else if error}
+    {#if error}
       <p>Error: {error}</p>
+    {:else if data}
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     {:else}
-      <ul>
-        {#each data as item}
-          <li>{item.name}</li>
-        {/each}
-      </ul>
+      <p>Loading...</p>
     {/if}
   </div>
-
 </main>

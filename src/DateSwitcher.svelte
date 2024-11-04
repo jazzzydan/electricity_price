@@ -1,9 +1,10 @@
 <script lang="ts">
-    import {onMount} from 'svelte';
+    import { onMount } from 'svelte';
 
+    export let onApiUrlChange: (url: string) => void;
     let startDate: Date;
     let endDate: Date;
-    let apiUrl: String;
+    let apiUrl: string; // Declare the apiUrl variable
 
     onMount(() => {
         setInitialDates();
@@ -25,6 +26,7 @@
         const start = startDate.toISOString();
         const end = endDate.toISOString();
         apiUrl = `https://dashboard.elering.ee/api/nps/price?start=${start}&end=${end}`;
+        onApiUrlChange(apiUrl);
     }
 
     function changeDates(days: number) {
@@ -40,6 +42,7 @@
         return new Intl.DateTimeFormat('en-GB').format(date);
     }
 </script>
+
 <div>
     <h2>Select Dates</h2>
     <button on:click={() => changeDates(-1)}>Previous Day</button>
