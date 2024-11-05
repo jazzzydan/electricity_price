@@ -1,14 +1,20 @@
 <script lang="ts">
     import DateSwitcher from "./DateSwitcher.svelte"
-    import {onMount} from "svelte";
+    import {onMount} from "svelte"
 
     interface PricePair {
-        timestamp: number, price: number
+        timestamp: number
+        price: number
     }
 
-    type CountryCode = 'ee'|'lv'|'lt'|'fi'
+    let CountryCode: 'ee'|'lv'|'lt'|'fi' = 'ee'
 
-    let data: Record<CountryCode, Array<PricePair>> = {}
+    interface ApiResponse {
+        success: boolean
+        data: Record<CountryCode, PricePair[]>
+    }
+
+    let data: Record<CountryCode, Array<PricePair>> | null = null
     let error: string | undefined
     let loading = true
     let apiUrl: string
@@ -18,6 +24,27 @@
     onMount(() => {
         setApiUrl()
     })
+
+    function getPriceDataForCountry(response: ApiResponse, countryCode: CountryCode): number[] {
+        // Ensure that the response and response.data exist
+        if (!response || !response.data) {
+            throw new Error('Invalid response structure: "data" field is missing.');
+        }
+
+        // Check if the countryCode exists within the data
+        const countryData = response.data[countryCode];
+
+        // If countryData is not found, throw an error
+        if (!countryData) {
+            throw new Error(`Data for country ${countryCode} is not available.`);
+        }
+
+        // Ensure there are exactly 24 price records
+        if (countryData.length !== 24) {
+            throw new Error(`Data for ${countryCode} does not have 24 price entries.`);
+        }
+        return countryData.map((pricePair) => pricePair.price)
+    }
 
     function setApiUrl(startDate: Date, endDate: Date) {
         //TODO: Cannot read properties of undefined (reading 'toISOString')
@@ -39,6 +66,8 @@
                 throw new Error('Network response was not ok')
             }
             data = await response.json()
+            const pricesForEE = getPriceDataForCountry(response, CountryCode);
+            console.log(pricesForEE)
         } catch (err) {
             error = err.message
         } finally {
