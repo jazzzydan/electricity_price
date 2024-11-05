@@ -58,8 +58,7 @@
             const response = await fetch(apiUrl)
             const jsonData = await response.json();
             const prices = getPriceDataForCountry(jsonData, CountryCode);
-
-            priceDataForCountry = prices;
+            priceDataForCountry.set(prices);
         } catch (err) {
             error = err.message
         } finally {
@@ -85,6 +84,6 @@
     {:else if error}
         <p>Error: {error}</p>
     {:else}
-        <pre>{JSON.stringify(priceDataForCountry, null, 2)}</pre>
+        <pre>{JSON.stringify($priceDataForCountry, null, 2)}</pre>
     {/if}
 </main>
