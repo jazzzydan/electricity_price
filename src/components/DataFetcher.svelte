@@ -1,5 +1,6 @@
 <script lang="ts">
     import DateSwitcher from "./DateSwitcher.svelte"
+    import CountrySelector from "./CountrySelector.svelte";
 
     interface ApiResponse {
         success: boolean
@@ -8,17 +9,26 @@
 
     export let countryCode: 'ee' | 'lv' | 'lt' | 'fi' = 'ee'
 
+
     interface PricePair {
         timestamp: number
         price: number
     }
 
     export let priceDataForCountry = []
+    export let listOfCountries = []
 
     let error: string | undefined
     let loading = true
     let date: string
 
+    function getCountries(response: ApiResponse) {
+        for (const countryCode in response.data) {
+            listOfCountries.push(countryCode)
+        }
+    }
+
+    //TODO: throw new x 3 remove after
     function getPriceDataForCountry(response: ApiResponse, countryCode: CountryCode): number[] {
         if (!response || !response.data) {
             throw new Error('Invalid response structure: "data" field is missing.');
@@ -58,11 +68,15 @@
     }
 
     $: fetchPrices(date)
+    $: getCountries()
 </script>
 
 <main>
     <div>
         <DateSwitcher bind:date/>
+    </div>
+    <div>
+        <CountrySelector bind:countryCode/>
     </div>
 
     {#if loading}
