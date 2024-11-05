@@ -1,29 +1,23 @@
 <script lang="ts">
     import DateSwitcher from "./DateSwitcher.svelte"
-    import {onMount} from "svelte"
-    import {priceDataForCountry} from './shared'
 
     interface ApiResponse {
         success: boolean
         data: Record<CountryCode, PricePair[]>
     }
 
-    let CountryCode: 'ee' | 'lv' | 'lt' | 'fi' = 'ee'
+    export let countryCode: 'ee' | 'lv' | 'lt' | 'fi' = 'ee'
 
     interface PricePair {
         timestamp: number
         price: number
     }
 
+    export let priceDataForCountry = []
+
     let error: string | undefined
     let loading = true
-    let apiUrl: string
-    let startDate: Date
-    let endDate: Date
-
-    onMount(() => {
-        setApiUrl(startDate, endDate)
-    })
+    let date: string
 
     function getPriceDataForCountry(response: ApiResponse, countryCode: CountryCode): number[] {
         if (!response || !response.data) {
@@ -41,24 +35,21 @@
         return countryData.map((pricePair) => pricePair.price)
     }
 
-    function setApiUrl(startDate: Date, endDate: Date) {
-        const start = startDate.toISOString()
-        const end = endDate.toISOString()
-        apiUrl = `https://dashboard.elering.ee/api/nps/price?start=${start}&end=${end}`
-        fetchData()
-    }
+    async function fetchPrices(date: string) {
+        const start = new Date(date)
+        const end = new Date(date)
+        end.setDate(end.getDate() + 1)
 
-    async function fetchData() {
+        const apiUrl = `https://dashboard.elering.ee/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`
+
         loading = true
         error = null
-
-        if (!apiUrl) return
 
         try {
             const response = await fetch(apiUrl)
             const jsonData = await response.json();
-            const prices = getPriceDataForCountry(jsonData, CountryCode);
-            priceDataForCountry.set(prices);
+            priceDataForCountry = getPriceDataForCountry(jsonData, countryCode);
+
         } catch (err) {
             error = err.message
         } finally {
@@ -66,17 +57,12 @@
         }
     }
 
-    function handleDateChange(newStartDate: Date, newEndDate: Date) {
-        startDate = newStartDate;
-        endDate = newEndDate;
-        setApiUrl(startDate, endDate);
-    }
-
+    $: fetchPrices(date)
 </script>
 
 <main>
     <div>
-        <DateSwitcher onDateChange={handleDateChange}/>
+        <DateSwitcher bind:date/>
     </div>
 
     {#if loading}
@@ -84,6 +70,6 @@
     {:else if error}
         <p>Error: {error}</p>
     {:else}
-        <pre>{JSON.stringify($priceDataForCountry, null, 2)}</pre>
+        <pre>{JSON.stringify(priceDataForCountry, null, 2)}</pre>
     {/if}
 </main>
