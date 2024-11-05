@@ -7,6 +7,8 @@
 
         onMount(() => {
             setInitialDates()
+            onDateChange(startDate, endDate);
+
          })
 
         function setInitialDates() {
@@ -24,10 +26,11 @@
             startDate = new Date(startDate) // Create new Date instances to trigger reactivity
             endDate = new Date(endDate) // Create new Date instances to trigger reactivity
 
-            startDate.setDate(startDate.getDate() + days)
-            endDate.setDate(endDate.getDate() + days)
-            setApiUrl() //moved to DataFetcher
-        }
+        startDate.setDate(startDate.getDate() + days);
+        endDate.setDate(endDate.getDate() + days);
+
+        onDateChange(startDate, endDate);
+    }
 
         function formatDate(date: Date): string {
             return new Intl.DateTimeFormat('en-GB').format(date)
