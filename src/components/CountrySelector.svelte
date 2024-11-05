@@ -1,13 +1,17 @@
-
 <script lang="ts">
-
-    export let countryCode
+    export let listOfCountries = []
+    export let countryCode = ''
 
 </script>
 
-<div>
-    <h2>Select Country</h2>
-
-    <input type="date" bind:value={date}>
-
-</div>
+{#each listOfCountries as country}
+    <label>
+        <input
+                type="radio"
+                name="countryOption"
+                value={country}
+                bind:group={countryCode}
+        />
+        {country.toUpperCase()}
+    </label>
+{/each}

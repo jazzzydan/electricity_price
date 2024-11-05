@@ -1,14 +1,12 @@
 <script lang="ts">
     import DateSwitcher from "./DateSwitcher.svelte"
-    import CountrySelector from "./CountrySelector.svelte";
+    import CountrySelector from "./CountrySelector.svelte"
+    import { toISODate } from "./dates"
 
     interface ApiResponse {
         success: boolean
-        data: Record<CountryCode, PricePair[]>
+        data: Record<string, PricePair[]>
     }
-
-    export let countryCode: 'ee' | 'lv' | 'lt' | 'fi' = 'ee'
-
 
     interface PricePair {
         timestamp: number
@@ -17,19 +15,23 @@
 
     export let priceDataForCountry = []
     export let listOfCountries = []
+    export let countryCode: string = ''
 
     let error: string | undefined
     let loading = true
     let date: string
+    let fetchedData: ApiResponse | null = null
 
-    function getCountries(response: ApiResponse) {
+    function getCountries(response: ApiResponse): string[] {
+        const countries: string[] = []
         for (const countryCode in response.data) {
-            listOfCountries.push(countryCode)
+            countries.push(countryCode)
         }
+        return countries
     }
 
-    //TODO: throw new x 3 remove after
-    function getPriceDataForCountry(response: ApiResponse, countryCode: CountryCode): number[] {
+    //TODO: remove required for troubleshooting Error throws
+    function getPriceDataForCountry(response: ApiResponse, countryCode: string): number[] {
         if (!response || !response.data) {
             throw new Error('Invalid response structure: "data" field is missing.');
         }
@@ -48,17 +50,23 @@
     async function fetchPrices(date: string) {
         const start = new Date(date)
         const end = new Date(date)
-        end.setDate(end.getDate() + 1)
+        start.setDate(start.getDate() - 1)
+        //TODO: update date.ts for winter and summer time difference
 
-        const apiUrl = `https://dashboard.elering.ee/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`
+        const apiUrl = `https://dashboard.elering.ee/api/nps/price?start=${toISODate(start)}T23:00:00.000Z&end=${toISODate(end)}T22:59:59.999Z`
 
         loading = true
         error = null
 
         try {
             const response = await fetch(apiUrl)
-            const jsonData = await response.json();
-            priceDataForCountry = getPriceDataForCountry(jsonData, countryCode);
+            const jsonData = await response.json()
+            fetchedData = jsonData
+            listOfCountries = getCountries(jsonData)
+            if (initialFetch()) {
+                countryCode = listOfCountries[0]
+            }
+            priceDataForCountry = getPriceDataForCountry(jsonData, countryCode)
 
         } catch (err) {
             error = err.message
@@ -67,8 +75,16 @@
         }
     }
 
-    $: fetchPrices(date)
-    $: getCountries()
+    function initialFetch() {
+        return !listOfCountries.includes(countryCode);
+    }
+
+    $: fetchPrices(date);
+
+    // Reactive statement to update priceDataForCountry when countryCode changes
+    $: if (fetchedData && countryCode) {
+        priceDataForCountry = getPriceDataForCountry(fetchedData, countryCode);
+    }
 </script>
 
 <main>
@@ -76,7 +92,7 @@
         <DateSwitcher bind:date/>
     </div>
     <div>
-        <CountrySelector bind:countryCode/>
+        <CountrySelector { listOfCountries } bind:countryCode/>
     </div>
 
     {#if loading}
