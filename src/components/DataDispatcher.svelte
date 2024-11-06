@@ -2,10 +2,11 @@
     import DateSwitcher from "./DateSwitcher.svelte"
     import CountrySelector from "./CountrySelector.svelte"
     import {toISODate} from "./dates"
+    import BarChart from "./BarChart.svelte";
 
     interface ApiResponse {
         success: boolean
-        data: Record<CountryCode, PricePair[]>
+        data: Record<string, PricePair[]>
     }
 
     interface PricePair {
@@ -13,12 +14,10 @@
         price: number
     }
 
-    export let priceDataForCountry = []
-    export let listOfCountries = []
+    export let priceDataForCountry: number[]
+    export let listOfCountries: string[]
     export let countryCode: string = ''
 
-    let error: string | undefined
-    let loading = true
     let date: string
     let fetchedData: ApiResponse | null = null
 
@@ -31,7 +30,7 @@
     }
 
     //TODO: remove required for troubleshooting Error throws
-    function getPriceDataForCountry(response: ApiResponse, countryCode: CountryCode): number[] {
+    function getPriceDataForCountry(response: ApiResponse, countryCode: string): number[] {
         if (!response || !response.data) {
             throw new Error('Invalid response structure: "data" field is missing.')
         }
@@ -55,9 +54,6 @@
 
         const apiUrl = `https://dashboard.elering.ee/api/nps/price?start=${toISODate(start)}T23:00:00.000Z&end=${toISODate(end)}T22:59:59.999Z`
 
-        loading = true
-        error = null
-
         try {
             const response = await fetch(apiUrl)
             const jsonData = await response.json()
@@ -68,10 +64,8 @@
             }
             priceDataForCountry = getPriceDataForCountry(jsonData, countryCode)
 
-        } catch (err) {
-            error = err.message
-        } finally {
-            loading = false
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -91,14 +85,9 @@
         <DateSwitcher bind:date/>
     </div>
     <div>
+        <BarChart {priceDataForCountry}/>
+    </div>
+    <div>
         <CountrySelector { listOfCountries } bind:countryCode/>
     </div>
-
-    {#if loading}
-        <p>Loading...</p>
-    {:else if error}
-        <p>Error: {error}</p>
-    {:else}
-        <pre>{JSON.stringify(priceDataForCountry, null, 2)}</pre>
-    {/if}
 </main>
