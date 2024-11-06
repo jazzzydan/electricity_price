@@ -1,12 +1,13 @@
 <script lang="ts">
 
-    export let barData: number
+    export let price: number
+    export let timestamp: number
 
 </script>
 
 
-<div class="bar" style="height: {barData}px;">
-    <div class="bar-label">{barData}</div>
+<div class="bar" style="height: {price}px;">
+    <div class="bar-label">{timestamp}</div>
 </div>
 
 <style>

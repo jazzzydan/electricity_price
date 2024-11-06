@@ -1,13 +1,19 @@
 <script lang="ts">
     import Bar from "./Bar.svelte";
 
-    export let priceDataForCountry: number[]
+    interface PricePair {
+        timestamp: number
+        price: number
+    }
+
+    export let priceDataForCountry: PricePair[]
+
 </script>
 
 <div class="barchart">
-    {#each priceDataForCountry as barData}
+    {#each priceDataForCountry as pair}
         <div class="bar-container">
-            <Bar {barData}/>
+            <Bar price={pair.price} timestamp={pair.timestamp}/>
         </div>
     {/each}
 </div>
