@@ -14,7 +14,7 @@
         price: number
     }
 
-    export let priceDataForCountry: PricePair[]
+    export let priceDataForCountry: PricePair[] = []
     export let listOfCountries: string[]
     export let countryCode: string = ''
 
@@ -94,6 +94,6 @@
         <BarChart {priceDataForCountry}/>
     </div>
     <div>
-        <CountrySelector { listOfCountries } bind:countryCode/>
+        <CountrySelector {listOfCountries} bind:countryCode/>
     </div>
 </main>

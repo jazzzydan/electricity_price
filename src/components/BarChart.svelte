@@ -1,5 +1,6 @@
 <script lang="ts">
     import Bar from "./Bar.svelte";
+    import Line from "./Line.svelte";
 
     interface PricePair {
         timestamp: number
@@ -8,33 +9,57 @@
 
     export let priceDataForCountry: PricePair[]
 
+    $: maxValue = priceDataForCountry.length > 0 ? Math.max(...priceDataForCountry.map(pair => pair.price)) : 1000
+    $: yAxisValues = maxValue ? [maxValue, maxValue * 0.75, maxValue * 0.5, maxValue * 0.25, 0] : []
 </script>
 
-<div class="barchart">
-    {#each priceDataForCountry as pair}
-        <div class="bar-container">
-            <Bar price={pair.price} timestamp={pair.timestamp}/>
+<div class="component">
+    <div class="chart-area">
+        <div class="lines">
+            {#each yAxisValues as yAxisValue}
+                <Line {yAxisValue}/>
+            {/each}
         </div>
-    {/each}
+        <div class="y-axis" />
+        <div class="bars-area">
+            {#each priceDataForCountry as pair}
+                <Bar price={pair.price / maxValue} timestamp={pair.timestamp}/>
+            {/each}
+        </div>
+    </div>
 </div>
 
 <style>
-    .barchart {
+    .component {
         display: flex;
-        flex-direction: row;
-        gap: 0.5em;
-        justify-content: center;
-        align-items: flex-end;
-        flex-wrap: wrap;
-        min-height: 600px;
-        overflow: hidden;
-        padding: 2em;
-        background-color: rgba(240, 240, 240, 0.5);
-    }
-    .bar-container {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;  /* Align bar at the bottom of the container */
+        flex-direction: column;
     }
 
+    .chart-area {
+        position: relative;
+        display: flex;
+        width: 80vw;
+        min-width: 600px;
+        height: 60vh;
+        min-height: 400px;
+    }
+
+    .lines {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .y-axis {
+        flex: 1;
+    }
+
+    .bars-area {
+        display: flex;
+        flex: 8;
+        gap: 0.3em;
+    }
 </style>
