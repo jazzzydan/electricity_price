@@ -1,5 +1,5 @@
 <script lang="ts">
-    import DataFetcher from "./components/DataDispatcher.svelte";
+    import DataFetcher from "./components/ElectricityPrices.svelte";
 </script>
 <main>
     <div>

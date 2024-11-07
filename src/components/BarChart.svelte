@@ -3,16 +3,14 @@
     import Line from "./Line.svelte";
 
     interface PricePair {
-        timestamp: number
-        price: number
+        timestamp: number;
+        price: number;
     }
 
-    export let priceDataForCountry: PricePair[]
+    export let priceDataForCountry: PricePair[];
 
-    //TODO: explore if await is applicable.
-    //TODO: minimum price on Y axis
-    $: maxValue = priceDataForCountry.length > 0 ? Math.max(...priceDataForCountry.map(pair => pair.price)) : 1000
-    $: yAxisValues = maxValue ? [maxValue, maxValue * 0.75, maxValue * 0.5, maxValue * 0.25, 0] : []
+    $: maxValue = priceDataForCountry.length > 0 ? Math.max(...priceDataForCountry.map(pair => pair.price)) : 1000;
+    $: yAxisValues = maxValue ? [maxValue, maxValue * 0.75, maxValue * 0.5, maxValue * 0.25, 0] : [];
 </script>
 
 <div class="component">
@@ -25,7 +23,7 @@
         <div class="y-axis"></div>
         <div class="bars-area">
             {#each priceDataForCountry as pair}
-                <Bar price={pair.price / maxValue} timestamp={pair.timestamp}/>
+                <Bar price={pair.price / maxValue} originalPrice={pair.price} timestamp={pair.timestamp} />
             {/each}
         </div>
     </div>

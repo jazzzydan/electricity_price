@@ -1,7 +1,8 @@
 <script lang="ts">
     import HoverInfo from "./HoverInfo.svelte";
 
-    export let price: number;
+    export let price: number; // The scaled value used for rendering
+    export let originalPrice: number; // The actual price to display in the tooltip
     export let timestamp: number;
 
     let showTooltip = false;
@@ -11,7 +12,6 @@
     function handleMouseEnter(event: MouseEvent) {
         showTooltip = true;
         updateTooltipPosition(event);
-        console.log("Mouse entered bar:", { price, timestamp });
     }
 
     function handleMouseMove(event: MouseEvent) {
@@ -20,19 +20,26 @@
 
     function handleMouseLeave() {
         showTooltip = false;
-        console.log("Mouse left bar:", { price, timestamp });
     }
 
     function updateTooltipPosition(event: MouseEvent) {
         mouseX = event.clientX + 10; // Offset to position tooltip slightly right of cursor
         mouseY = event.clientY + 10; // Offset to position tooltip slightly below cursor
-        console.log("Tooltip position updated:", { mouseX, mouseY });
     }
 </script>
 
-<div class="bar" style="transform: scaleY({price});"></div>
+<div
+        class="bar"
+        style="transform: scaleY({price});"
+on:mouseenter={handleMouseEnter}
+on:mousemove={handleMouseMove}
+on:mouseleave={handleMouseLeave}
+></div>
 
-
+{#if showTooltip}
+    <!-- Pass the original price to HoverInfo -->
+    <HoverInfo price={originalPrice} x={mouseX} y={mouseY} />
+{/if}
 
 <style>
     .bar {
@@ -41,14 +48,5 @@
         height: 100%;
         transform-origin: bottom;
         transition: transform 2s ease-in-out;
-    }
-    .bar-timestamp-label {
-        text-align: center;
-        color: royalblue;
-        font-size: 10px;
-        position: absolute;
-        bottom: -1.5em;
-        left: 50%;
-        transform: translateX(-50%);
     }
 </style>
