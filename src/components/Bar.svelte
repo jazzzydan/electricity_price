@@ -30,7 +30,7 @@
 
 <div
         class="bar"
-        style="transform: scaleY({price});"
+        style="transform: scaleY({price})"
         on:mouseenter={handleMouseEnter}
         on:mousemove={handleMouseMove}
         on:mouseleave={handleMouseLeave}

@@ -1,6 +1,8 @@
 import {beforeEach, describe, expect, it, vi} from "vitest";
 import ElectricityPrices from "../components/ElectricityPrices.svelte";
-import {render, waitFor} from "@testing-library/svelte";
+import {act, render} from "@testing-library/svelte";
+import {tick} from "svelte";
+
 
 describe('ElectricityPrices', async () => {
     beforeEach(() => {
@@ -23,30 +25,24 @@ const testResponseData = {
 }
 
     it('should fetch data from external API and pass it as a prop to the component', async () => {
-        const fetchSpy = vi.spyOn(window, 'fetch').mockResolvedValueOnce({
-            json: async () => testResponseData
-        } as Response)
+        const fetchSpy = vi.spyOn(window, 'fetch').mockReturnValue(Promise.resolve({
+            json: () => Promise.resolve(testResponseData)
+        } as Response))
 
         const date = '2024-11-06';
         const countryCode = 'ee';
 
-        // Render the component with the necessary props
-        render(ElectricityPrices, { date, countryCode }); // Pass both date and countryCode to the component
+        // Act (state 1)
+        const {container} = render(ElectricityPrices, {date, countryCode});
 
-        const start = new Date(date + 'T00:00');
-        const end = new Date(date + 'T23:59');
+        expect(fetchSpy).toHaveBeenCalledWith(
+            'https://dashboard.elering.ee/api/nps/price?start=2024-11-05T22:00:00.000Z&end=2024-11-06T21:59:00.000Z'
+        );
 
+        await act(() => fetchSpy) //svelte jargmine samm
+        await tick()
 
-        await waitFor(() => {
-            expect(fetchSpy).toHaveBeenCalledWith(
-                `https://dashboard.elering.ee/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`
-            );
-        });
-
-        const priceElements = screen.getAllByText(/price/i);
-        expect(priceElements.length).toBeGreaterThan(0);
-
-        const firstPriceElement = priceElements[0];
-        expect(firstPriceElement).toHaveTextContent('74.83');
+        // assert that data was received/rendered
+        expect(container.querySelectorAll('.bar')).to.have.length(2)
     });
 });

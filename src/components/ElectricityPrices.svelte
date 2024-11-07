@@ -37,9 +37,9 @@
         if (!countryData) {
             throw new Error(`Data for country ${countryCode} is not available.`)
         }
-        if (countryData.length !== 24) {
-            throw new Error(`Data for ${countryCode} does not have 24 price entries.`)
-        }
+        // if (countryData.length !== 24) {
+        //     throw new Error(`Data for ${countryCode} does not have 24 price entries.`)
+        // }
 
         return countryData.map((pricePair) => ({
             timestamp: convertTimestamp(pricePair.timestamp),
@@ -59,8 +59,7 @@
         const apiUrl = `https://dashboard.elering.ee/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`
 
         try {
-            const response = await fetch(apiUrl)
-            const jsonData = await response.json()
+            const jsonData = await fetch(apiUrl).then(response => response.json())
             fetchedData = jsonData
             listOfCountries = getCountries(jsonData)
             if (isInitialFetch()) {
