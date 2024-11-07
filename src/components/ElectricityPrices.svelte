@@ -14,10 +14,9 @@
     }
 
     export let priceDataForCountry: PricePair[] = []
-    export let listOfCountries: string[]
+    export let listOfCountries: string[] = []
     export let countryCode: string = ''
-
-    let date: string
+    export let date: string
     let fetchedData: ApiResponse | null = null
 
     function getCountries(response: ApiResponse): string[] {
@@ -96,3 +95,9 @@
         <CountrySelector {listOfCountries} bind:countryCode/>
     </div>
 </main>
+
+<style>
+    div{
+      margin-bottom: 1em;
+    }
+</style>

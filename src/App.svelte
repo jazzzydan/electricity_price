@@ -1,8 +1,8 @@
 <script lang="ts">
-    import DataFetcher from "./components/DataDispatcher.svelte";
+    import ElectricityPrices from "./components/ElectricityPrices.svelte";
 </script>
 <main>
     <div>
-        <DataFetcher/>
+        <ElectricityPrices/>
     </div>
 </main>

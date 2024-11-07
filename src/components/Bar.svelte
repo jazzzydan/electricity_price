@@ -2,37 +2,43 @@
     import HoverInfo from "./HoverInfo.svelte";
 
     export let price: number;
+    export let hoverPrice: number;
     export let timestamp: number;
 
     let showTooltip = false;
-    let mouseX = 0;
-    let mouseY = 0;
+    let mouseX = 0
+    let mouseY = 0
 
     function handleMouseEnter(event: MouseEvent) {
-        showTooltip = true;
-        updateTooltipPosition(event);
-        console.log("Mouse entered bar:", { price, timestamp });
+        showTooltip = true
+        updateTooltipPosition(event)
     }
 
     function handleMouseMove(event: MouseEvent) {
-        updateTooltipPosition(event);
+        updateTooltipPosition(event)
     }
 
     function handleMouseLeave() {
         showTooltip = false;
-        console.log("Mouse left bar:", { price, timestamp });
     }
 
     function updateTooltipPosition(event: MouseEvent) {
-        mouseX = event.clientX + 10; // Offset to position tooltip slightly right of cursor
-        mouseY = event.clientY + 10; // Offset to position tooltip slightly below cursor
-        console.log("Tooltip position updated:", { mouseX, mouseY });
+        mouseX = event.clientX + 10
+        mouseY = event.clientY + 10
     }
 </script>
 
-<div class="bar" style="transform: scaleY({price});"></div>
+<div
+        class="bar"
+        style="transform: scaleY({price});"
+        on:mouseenter={handleMouseEnter}
+        on:mousemove={handleMouseMove}
+        on:mouseleave={handleMouseLeave}
+></div>
 
-
+{#if showTooltip}
+    <HoverInfo price={hoverPrice} x={mouseX} y={mouseY}/>
+{/if}
 
 <style>
     .bar {
@@ -40,15 +46,6 @@
         background-color: royalblue;
         height: 100%;
         transform-origin: bottom;
-        transition: transform 2s ease-in-out;
-    }
-    .bar-timestamp-label {
-        text-align: center;
-        color: royalblue;
-        font-size: 10px;
-        position: absolute;
-        bottom: -1.5em;
-        left: 50%;
-        transform: translateX(-50%);
+        transition: transform 0.3s ease-in-out;
     }
 </style>

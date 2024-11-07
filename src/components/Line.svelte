@@ -3,7 +3,7 @@
 </script>
 
 <div class="main">
-    <p class="y-axis-value">{parseFloat(yAxisValue).toFixed(2)}</p>
+    <p class="y-axis-value">{yAxisValue.toFixed(2)}</p>
     <div class="dashed-line"></div>
 </div>
 

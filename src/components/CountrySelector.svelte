@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let listOfCountries = []
+    export let listOfCountries : string[] = []
     export let countryCode = ''
 
 </script>
