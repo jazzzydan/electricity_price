@@ -27,3 +27,5 @@ test('can switch to next month', async () => {
     await fireEvent.click(buttons[1])
     expect(container.querySelector('input')!.value).toBe('2024-11-01')
 })
+
+//TODO: test time switch from summer to winter time and vice versa
