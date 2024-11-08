@@ -25,7 +25,7 @@
         <div class="y-axis"></div>
         <div class="bars-area">
             {#each priceDataForCountry as pair}
-                <Bar price={pair.price / maxValue} hoverPrice={pair.price} timestamp={pair.timestamp}/>
+                <Bar price={pair.price / maxValue} hoverPrice={pair.price} />
             {/each}
         </div>
     </div>

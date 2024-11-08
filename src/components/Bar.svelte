@@ -3,7 +3,6 @@
 
     export let price: number;
     export let hoverPrice: number;
-    export let timestamp: number;
 
     let showTooltip = false;
     let mouseX = 0
@@ -26,17 +25,17 @@
         mouseX = event.clientX + 10
         mouseY = event.clientY + 10
     }
+
 </script>
 
-<div
-    class="bar"
-    style="
-        transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1});
-        background-color: {showTooltip ? 'darkblue' : 'royalblue'};
-    "
-    on:mouseenter={handleMouseEnter}
-    on:mousemove={handleMouseMove}
-    on:mouseleave={handleMouseLeave}
+<!--     TODO: ask about the role and its parameters region, button-->
+<div class="bar"
+style="transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1}); background-color: {showTooltip ? 'darkblue' : 'royalblue'};"
+     role="link"
+     tabindex="0"
+     on:mouseenter={handleMouseEnter}
+     on:mousemove={handleMouseMove}
+     on:mouseleave={handleMouseLeave}
 ></div>
 
 {#if showTooltip}

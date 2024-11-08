@@ -2,6 +2,8 @@
     import DateSwitcher from "./DateSwitcher.svelte"
     import CountrySelector from "./CountrySelector.svelte"
     import BarChart from "./BarChart.svelte"
+    import {getCountries, getPriceDataForCountry} from "../utilities/dataMapper";
+    import {exportElectricityPrices} from "../utilities/apiClient";
 
     interface ApiResponse {
         success: boolean
@@ -19,64 +21,20 @@
     export let date: string
     let fetchedData: ApiResponse | null = null
 
-    function getCountries(response: ApiResponse): string[] {
-        const countries: string[] = []
-        for (const countryCode in response.data) {
-            countries.push(countryCode)
+    function electricityPricesDispatcher(date: string) {
+        fetchedData = exportElectricityPrices(date)
+        listOfCountries = getCountries(fetchedData)
+        if (isInitialFetch()) {
+            countryCode = listOfCountries[0]
         }
-        return countries
-    }
-
-    //TODO: remove required for troubleshooting Error throws
-    function getPriceDataForCountry(response: ApiResponse, countryCode: string): PricePair[] {
-        if (!response || !response.data) {
-            throw new Error('Invalid response structure: "data" field is missing.')
-        }
-
-        const countryData = response.data[countryCode]
-        if (!countryData) {
-            throw new Error(`Data for country ${countryCode} is not available.`)
-        }
-        // if (countryData.length !== 24) {
-        //     throw new Error(`Data for ${countryCode} does not have 24 price entries.`)
-        // }
-
-        return countryData.map((pricePair) => ({
-            timestamp: convertTimestamp(pricePair.timestamp),
-            price: parseFloat((pricePair.price * 0.1).toFixed(2))
-        }))
-    }
-
-    function convertTimestamp(timestamp: number): number {
-        const date = new Date(timestamp * 1000);
-        return date.getHours();
-    }
-
-    async function fetchPrices(date: string) {
-        const start = new Date(date + 'T00:00')
-        const end = new Date(date + 'T23:59')
-
-        const apiUrl = `/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`
-
-        try {
-            const jsonData = await fetch(apiUrl).then(response => response.json())
-            fetchedData = jsonData
-            listOfCountries = getCountries(jsonData)
-            if (isInitialFetch()) {
-                countryCode = listOfCountries[0]
-            }
-            priceDataForCountry = getPriceDataForCountry(jsonData, countryCode)
-
-        } catch (error) {
-            console.log(error)
-        }
+        priceDataForCountry = getPriceDataForCountry(fetchedData, countryCode)
     }
 
     function isInitialFetch() {
         return !listOfCountries.includes(countryCode)
     }
 
-    $: fetchPrices(date)
+    $: electricityPricesDispatcher(date)
 
     $: if (fetchedData && countryCode) {
         priceDataForCountry = getPriceDataForCountry(fetchedData, countryCode)

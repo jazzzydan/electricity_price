@@ -1,6 +1,6 @@
     <script lang="ts">
-        import {today} from "./dates";
-        import {toISODate} from "./dates.js";
+        import {today} from "../utilities/dates";
+        import {toISODate} from "../utilities/dates.js";
 
         export let date = today
 
