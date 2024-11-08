@@ -56,7 +56,7 @@
         const start = new Date(date + 'T00:00')
         const end = new Date(date + 'T23:59')
 
-        const apiUrl = `https://dashboard.elering.ee/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`
+        const apiUrl = `/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`
 
         try {
             const jsonData = await fetch(apiUrl).then(response => response.json())

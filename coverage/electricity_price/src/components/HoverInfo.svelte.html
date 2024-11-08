@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for electricity_price/src/components/Line.svelte</title>
+    <title>Code coverage report for electricity_price/src/components/HoverInfo.svelte</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">electricity_price/src/components</a> Line.svelte</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">electricity_price/src/components</a> HoverInfo.svelte</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/5</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -88,13 +88,18 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -108,40 +113,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;script lang="ts"&gt;
-    export let yAxisValue: number
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+&lt;script lang="ts"&gt;
+    export let price: number;
+    export let x: number = 0;
+    export let y: number = 0;
 &lt;/script&gt;
 &nbsp;
-&lt;div class="main"&gt;
-    &lt;p class="y-axis-value"&gt;{yAxisValue.toFixed(2)}&lt;/p&gt;
-    &lt;div class="dashed-line"&gt;&lt;/div&gt;
+&lt;div class="hover-info" style="top: {y<span class="branch-0 cbranch-no" title="branch not covered" >}px; left: {x<span class="branch-0 cbranch-no" title="branch not covered" ></span>}px;"&gt;</span>
+    {price.toFixed(2<span class="branch-0 cbranch-no" title="branch not covered" >)}€ cent per kWh</span>
 &lt;/div&gt;
 &nbsp;
 &lt;style&gt;
-    .main {
-        display: flex;
-        align-items: center;
-        gap: 2px;
-        height: 0;
+    .hover-info {
+        position: fixed;
+        padding: 0.3em 0.6em;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        font-size: 12px;
+        border-radius: 4px;
+        pointer-events: none;
+        white-space: nowrap;
+        z-index: 10;
     }
+&lt;/style&gt;
 &nbsp;
-    .y-axis-value {
-        font-weight: bold;
-        color: royalblue;
-    }
-&nbsp;
-    .dashed-line {
-        flex: 1;
-        border-top: 2px dashed royalblue;
-    }
-&lt;/style&gt;</pre></td></tr></table></pre>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

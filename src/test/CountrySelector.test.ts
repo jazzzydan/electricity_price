@@ -32,15 +32,3 @@ test('selected country value is correct', async () => {
 
 });
 
-/**
-test('countryCode equals selected country', async () => {
-    let countryCode = 'ee';
-    const { container } = render(CountrySelector, {
-        listOfCountries: ['ee', 'lv', 'lt', 'fi'],
-        countryCode
-    });
-    const inputs = container.querySelectorAll('input[type="radio"]');
-    await fireEvent.click(inputs[1]);
-    expect(countryCode).toBe('lv');
-});
-*/

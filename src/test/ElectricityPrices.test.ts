@@ -36,11 +36,11 @@ const testResponseData = {
         const {container} = render(ElectricityPrices, {date, countryCode});
 
         expect(fetchSpy).toHaveBeenCalledWith(
-            'https://dashboard.elering.ee/api/nps/price?start=2024-11-05T22:00:00.000Z&end=2024-11-06T21:59:00.000Z'
+            '/api/nps/price?start=2024-11-05T22:00:00.000Z&end=2024-11-06T21:59:00.000Z'
         );
 
-        await act(() => fetchSpy) //svelte jargmine samm
-        await tick()
+        await act(() => fetchSpy)
+        await tick()  //svelte next step
 
         // assert that data was received/rendered
         expect(container.querySelectorAll('.bar')).to.have.length(2)
