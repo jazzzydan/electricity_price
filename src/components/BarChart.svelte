@@ -1,6 +1,7 @@
 <script lang="ts">
     import Bar from "./Bar.svelte";
     import Line from "./Line.svelte";
+    import Hours from "./Hours.svelte";
 
     interface PricePair {
         timestamp: number
@@ -14,7 +15,7 @@
     $: yAxisValues = maxValue ? [maxValue, maxValue * 0.75, maxValue * 0.5, maxValue * 0.25, 0] : []
 </script>
 
-<div class="component">
+<div class="main">
     <div class="chart-area">
         <div class="lines">
             {#each yAxisValues as yAxisValue}
@@ -24,14 +25,23 @@
         <div class="y-axis"></div>
         <div class="bars-area">
             {#each priceDataForCountry as pair}
-                <Bar price={pair.price / maxValue} hoverPrice={pair.price} timestamp={pair.timestamp} />
+                <Bar price={pair.price / maxValue} hoverPrice={pair.price} timestamp={pair.timestamp}/>
             {/each}
+        </div>
+    </div>
+    <div class="chart-area">
+        <div class="y-axis"></div>
+        <div class="timestamp">
+            <Hours/>
+            <!--{#each priceDataForCountry as pair}-->
+            <!--    <p>{pair.timestamp}</p>-->
+            <!--{/each}-->
         </div>
     </div>
 </div>
 
 <style>
-    .component {
+    .main {
         display: flex;
         flex-direction: column;
     }
@@ -63,4 +73,12 @@
         flex: 8;
         gap: 0.3em;
     }
+
+    .timestamp {
+        margin-top: 1em;
+        display: flex;
+        flex: 8;
+        gap: 0.3em;
+    }
+
 </style>
