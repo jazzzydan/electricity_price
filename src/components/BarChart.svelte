@@ -1,6 +1,7 @@
 <script lang="ts">
     import Bar from "./Bar.svelte";
     import Line from "./Line.svelte";
+    import Hours from "./Hours.svelte"; // Import the new Hours component
 
     interface PricePair {
         timestamp: number
@@ -22,10 +23,14 @@
             {/each}
         </div>
         <div class="y-axis"></div>
-        <div class="bars-area">
-            {#each priceDataForCountry as pair}
-                <Bar price={pair.price / maxValue} hoverPrice={pair.price} timestamp={pair.timestamp} />
-            {/each}
+
+        <div class="bars-and-hours">
+            <div class="bars-area">
+                {#each priceDataForCountry as pair}
+                    <Bar price={pair.price / maxValue} hoverPrice={pair.price} timestamp={pair.timestamp} />
+                {/each}
+            </div>
+            <Hours/>
         </div>
     </div>
 </div>
@@ -58,9 +63,18 @@
         flex: 1;
     }
 
+    /* Flex container for bars and hour labels */
+    .bars-and-hours {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Bars area */
     .bars-area {
         display: flex;
-        flex: 8;
+        flex: 1;
         gap: 0.3em;
+        justify-content: space-between;
     }
 </style>
