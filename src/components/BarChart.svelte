@@ -33,9 +33,6 @@
         <div class="y-axis"></div>
         <div class="timestamp">
             <Hours/>
-            <!--{#each priceDataForCountry as pair}-->
-            <!--    <p>{pair.timestamp}</p>-->
-            <!--{/each}-->
         </div>
     </div>
 </div>
@@ -65,7 +62,8 @@
     }
 
     .y-axis {
-        flex: 1;
+        /*flex: 1;*/
+        width: 3em;
     }
 
     .bars-area {
