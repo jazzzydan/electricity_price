@@ -3,7 +3,7 @@
 </script>
 
 <div class="main">
-    <p class="y-axis-value">{yAxisValue.toFixed(2)}</p>
+    <p class="y-axis-value">{yAxisValue.toFixed(0)}</p>
     <div class="dashed-line"></div>
 </div>
 
@@ -18,6 +18,7 @@
     .y-axis-value {
         font-weight: bold;
         color: royalblue;
+        font-size: 20px
     }
 
     .dashed-line {

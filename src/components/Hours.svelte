@@ -8,19 +8,6 @@
 
     hours[23] = '00:00';
 
-    // const handleResize = () => {
-    //     windowWidth = window.innerWidth;
-    // };
-
-    // import { onMount, onDestroy } from 'svelte';
-    // onMount(() => {
-    //     window.addEventListener('resize', handleResize);
-    // });
-    //
-    // onDestroy(() => {
-    //     window.removeEventListener('resize', handleResize);
-    // });
-
     const shouldShowLabel = (index: number): boolean => {
         if (windowWidth > 600) return true;
         return index % Math.max(1, Math.floor(hours.length / (windowWidth / 100))) === 0;
@@ -41,7 +28,7 @@
     .hour-labels {
         display: flex;
         justify-content: space-between;
-        font-size: 12px;
+        font-size: 14px;
         width: 100%;
         flex-wrap: wrap;
     }

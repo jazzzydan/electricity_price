@@ -29,11 +29,14 @@
 </script>
 
 <div
-        class="bar"
-        style="transform: scaleY({price})"
-        on:mouseenter={handleMouseEnter}
-        on:mousemove={handleMouseMove}
-        on:mouseleave={handleMouseLeave}
+    class="bar"
+    style="
+        transform: scaleY({price}) scaleX({showTooltip ? 1.2 : 1});
+        background-color: {showTooltip ? 'darkblue' : 'royalblue'};
+    "
+    on:mouseenter={handleMouseEnter}
+    on:mousemove={handleMouseMove}
+    on:mouseleave={handleMouseLeave}
 ></div>
 
 {#if showTooltip}
@@ -46,6 +49,6 @@
         background-color: royalblue;
         height: 100%;
         transform-origin: bottom;
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
     }
 </style>

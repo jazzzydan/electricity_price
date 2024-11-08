@@ -6,7 +6,7 @@
 </script>
 
 <div class="hover-info" style="top: {y}px; left: {x}px;">
-    {price.toFixed(2)}€ cent per kWh
+    {price.toFixed(2)} cent/kWh
 </div>
 
 <style>
@@ -15,7 +15,7 @@
         padding: 0.3em 0.6em;
         background-color: rgba(0, 0, 0, 0.7);
         color: white;
-        font-size: 12px;
+        font-size: 18px;
         border-radius: 4px;
         pointer-events: none;
         white-space: nowrap;

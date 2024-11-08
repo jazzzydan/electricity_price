@@ -9,7 +9,7 @@ describe('Line.svelte',() => {
         const {container} = render(Line, {yAxisValue: 123})
 
         // Assert (tulemuste kontrollimine)
-        expect(container.querySelector('.y-axis-value')?.textContent).to.eq('123.00')
+        expect(container.querySelector('.y-axis-value')?.textContent).to.eq('123')
 
     })
     test('line is rendered',()=>{

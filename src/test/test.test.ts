@@ -20,7 +20,7 @@ test('test component', () => {
     console.log(container.innerHTML)
 
     // Assert (tulemuste kontrollimine)
-    expect(container.querySelector('.y-axis-value')?.textContent).to.eq('123.00')
+    expect(container.querySelector('.y-axis-value')?.textContent).to.eq('123')
 })
 
 test('test component with user actions', async () => {

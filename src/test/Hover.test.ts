@@ -16,6 +16,6 @@ describe('HoverInfo.svelte', () => {
 
         //Assert
         expect(div).toBeInTheDocument()
-        expect(div).toHaveTextContent('10.00€ cent per kWh');
+        expect(div).toHaveTextContent('10.00 cent/kWh');
     })
 })

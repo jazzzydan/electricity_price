@@ -26,6 +26,6 @@ describe('Bar.svelte', () => {
         const computedStyle = getComputedStyle(bar!);
 
         //Assert
-        expect(computedStyle.transform).toBe('scaleY(-10)');
+        expect(computedStyle.transform).toBe('scaleY(-10) scaleX(1)');
     })
 })

@@ -29,18 +29,20 @@
             {/each}
         </div>
     </div>
-    <div class="chart-area">
+
+</div>
+<div class="main">
+    <div class="timestamp-area">
         <div class="y-axis"></div>
         <div class="timestamp">
             <Hours/>
         </div>
     </div>
 </div>
-
 <style>
     .main {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .chart-area {
@@ -77,6 +79,14 @@
         display: flex;
         flex: 8;
         gap: 0.3em;
+    }
+
+    .timestamp-area {
+        position: relative;
+        display: flex;
+        width: 80vw;
+        min-width: 600px;
+        height: 4vh;
     }
 
 </style>
