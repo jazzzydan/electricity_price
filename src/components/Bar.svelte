@@ -31,7 +31,7 @@
 <div
     class="bar"
     style="
-        transform: scaleY({price}) scaleX({showTooltip ? 1.2 : 1});
+        transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1});
         background-color: {showTooltip ? 'darkblue' : 'royalblue'};
     "
     on:mouseenter={handleMouseEnter}
