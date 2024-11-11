@@ -26,9 +26,6 @@ export function getPriceDataForCountry(response: ApiResponse, countryCode: strin
     if (!countryData) {
         throw new Error(`Data for country ${countryCode} is not available.`)
     }
-    // if (countryData.length !== 24) {
-    //     throw new Error(`Data for ${countryCode} does not have 24 price entries.`)
-    // }
 
     return countryData.map((pricePair) => ({
         timestamp: convertTimestamp(pricePair.timestamp),

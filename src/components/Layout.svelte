@@ -21,8 +21,8 @@
     export let date: string
     let fetchedData: ApiResponse | null = null
 
-    function electricityPricesDispatcher(date: string) {
-        fetchedData = exportElectricityPrices(date)
+    async function electricityPricesDispatcher(date: string) {
+        fetchedData = await exportElectricityPrices(date)
         listOfCountries = getCountries(fetchedData)
         if (isInitialFetch()) {
             countryCode = listOfCountries[0]

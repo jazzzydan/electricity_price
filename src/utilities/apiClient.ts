@@ -8,14 +8,14 @@ interface PricePair {
     price: number
 }
 
-function createEleringApiUrl(date: string) {
+export function createEleringApiUrl(date: string) {
     const start = new Date(date + 'T00:00')
     const end = new Date(date + 'T23:59')
 
     return `/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`;
 }
 
-async function fetchData(apiUrl: string) {
+export async function fetchData(apiUrl: string) {
     try {
         return await fetch(apiUrl).then(response => response.json());
     } catch (error) {
