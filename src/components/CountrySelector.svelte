@@ -1,6 +1,8 @@
 <script lang="ts">
-    export let listOfCountries : string[] = []
-    export let countryCode = ''
+    import type {CountryCode} from "../utilities/apiClient";
+
+    export let listOfCountries : CountryCode[] = []
+    export let countryCode: CountryCode
 
 </script>
 

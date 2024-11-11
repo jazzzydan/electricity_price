@@ -3,25 +3,19 @@
     import CountrySelector from "./CountrySelector.svelte"
     import BarChart from "./BarChart.svelte"
     import {getCountries, getPriceDataForCountry} from "../utilities/dataMapper";
-    import {exportElectricityPrices} from "../utilities/apiClient";
-
-    interface ApiResponse {
-        success: boolean
-        data: Record<string, PricePair[]>
-    }
-
-    interface PricePair {
-        timestamp: number
-        price: number
-    }
+    import {
+        type ApiResponse, type CountryCode,
+        exportElectricityPrices, type PricePair,
+    } from "../utilities/apiClient";
+    import type {ISODate} from "../utilities/dates";
 
     export let priceDataForCountry: PricePair[] = []
-    export let listOfCountries: string[] = []
-    export let countryCode: string = ''
-    export let date: string
+    export let listOfCountries: CountryCode[] = []
+    export let countryCode: CountryCode
+    export let date: ISODate
     let fetchedData: ApiResponse | null = null
 
-    async function electricityPricesDispatcher(date: string) {
+    async function electricityPricesDispatcher(date: ISODate) {
         fetchedData = await exportElectricityPrices(date)
         listOfCountries = getCountries(fetchedData)
         if (isInitialFetch()) {
@@ -42,6 +36,7 @@
 </script>
 
 <main>
+    <div><h2>ELECTRICITY PRICES CHART</h2></div>
     <div>
         <DateSwitcher bind:date/>
     </div>

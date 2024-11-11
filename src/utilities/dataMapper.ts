@@ -1,23 +1,11 @@
-interface ApiResponse {
-    success: boolean
-    data: Record<string, PricePair[]>
-}
+import type {ApiResponse, CountryCode, PricePair} from "./apiClient";
 
-interface PricePair {
-    timestamp: number
-    price: number
-}
-
-export function getCountries(response: ApiResponse): string[] {
-    const countries: string[] = []
-    for (const countryCode in response.data) {
-        countries.push(countryCode)
-    }
-    return countries
+export function getCountries(response: ApiResponse): CountryCode[] {
+    return Object.keys(response.data) as CountryCode[]
 }
 
 //TODO: remove required for troubleshooting Error throws
-export function getPriceDataForCountry(response: ApiResponse, countryCode: string): PricePair[] {
+export function getPriceDataForCountry(response: ApiResponse, countryCode: CountryCode): PricePair[] {
     if (!response || !response.data) {
         throw new Error('Invalid response structure: "data" field is missing.')
     }

@@ -37,4 +37,15 @@ test('can switch to next month', async () => {
     expect(container.querySelector('input')!.value).toBe('2024-11-01')
 })
 
+// test('date after tomorrow is not selectable', async ()=>{
+//     //Arrange
+//     const {container} = render(DateSwitcher, {today})
+//     const buttons = container.querySelectorAll('button')
+//     //Act
+//     await fireEvent.click(buttons[1])
+//     //Assert
+//     expect(buttons[1].style...???).toBe
+//
+// })
+
 //TODO: test time switch from summer to winter time and vice versa
