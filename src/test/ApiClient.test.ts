@@ -1,8 +1,5 @@
 import {beforeEach, describe, expect, test, vi, it} from "vitest";
 import {createEleringApiUrl, exportElectricityPrices} from "../utilities/apiClient";
-import {act, render} from "@testing-library/svelte";
-import Layout from "../components/Layout.svelte";
-import {tick} from "svelte";
 
 describe('ApiClient', async () => {
     beforeEach(() => {
@@ -23,7 +20,6 @@ describe('ApiClient', async () => {
     }
 
     const date = '2024-11-06'
-    const countryCode = 'ee';
 
     it('should create URL based on provided date', () => {
         //Arrange
@@ -47,20 +43,4 @@ describe('ApiClient', async () => {
         expect(result).toEqual(testApiResponse)
     });
 })
-
-
-// test('fetches Elering price data and returns json data', async () => {
-//     const mockResponse = {
-//         data: {
-//             key: 'value',
-//         },
-//     };
-//     vi.spyOn(window, 'fetch').mockResolvedValue({ok: true, json: async () => mockResponse} as Response)
-//
-//     const date = '2024-11-06'
-//     const result = await createEleringApiUrl(date)
-//
-//     expect(fetch).toHaveBeenCalledWith('/api/nps/price?start=2024-11-05T22:00:00.000Z&end=2024-11-06T21:59:00.000Z')
-//     expect(result).toEqual(mockResponse.data)
-// })
 

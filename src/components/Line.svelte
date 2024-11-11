@@ -3,7 +3,7 @@
 </script>
 
 <div class="main">
-    <p class="y-axis-value">{yAxisValue.toFixed(0)}</p>
+    <p class="y-axis-value">{yAxisValue.toFixed(0)} 'c/kWh'</p>
     <div class="dashed-line"></div>
 </div>
 

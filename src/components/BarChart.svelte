@@ -65,7 +65,7 @@
 
     .y-axis {
         /*flex: 1;*/
-        width: 3em;
+        width: 6em;
     }
 
     .bars-area {
