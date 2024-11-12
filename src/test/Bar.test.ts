@@ -15,6 +15,7 @@ describe('Bar.svelte', () => {
         //Assert
         expect(bar).toBeInTheDocument()
     })
+
     test('bar price value is correct', () => {
         //Arrange + act
         const {container} = render(Bar, {

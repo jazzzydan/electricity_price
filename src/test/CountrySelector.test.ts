@@ -4,9 +4,7 @@ import {expect, test} from "vitest";
 
 
 test('renders no countries when listOfCountries is empty', () => {
-    const {container} = render(CountrySelector, {
-        listOfCountries: []
-    })
+    const {container} = render(CountrySelector)
     const radioButtons = container.querySelectorAll('input[type="radio"]')
     expect(radioButtons.length).toBe(0)
 })
@@ -29,6 +27,5 @@ test('selected country value is correct', async () => {
     expect(inputs[1].checked).toBe(true)
     const selectedRadioButton = container.querySelector('input[type="radio"]:checked') as HTMLInputElement;
     expect(selectedRadioButton.value).toEqual('lv');
-
 });
 

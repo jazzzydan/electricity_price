@@ -4,8 +4,10 @@ export interface ApiResponse {
     success: boolean
     data: PricesByCountry
 }
-export type PricesByCountry = Partial<Record<CountryCode, PricePair[]>>
-export type CountryCode = `${'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'}${'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'}`
+
+export type PricesByCountry = Record<CountryCode, PricePair[]>
+export type CountryCode = `${string & { length: 2 }}`
+
 export interface PricePair {
     timestamp: number
     price: number
