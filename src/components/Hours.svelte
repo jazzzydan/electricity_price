@@ -31,7 +31,6 @@
         width: 100%;
         flex-wrap: wrap;
     }
-
     .hour-label {
         text-align: center;
         font-weight: bold;

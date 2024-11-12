@@ -25,12 +25,13 @@
         mouseX = event.clientX + 10
         mouseY = event.clientY + 10
     }
-
 </script>
 
 <!--     TODO: ask about the role and its parameters region, button-->
+
+<!--     class:current={...}-->
 <div class="bar"
-style="transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1}); background-color: {showTooltip ? 'darkblue' : 'royalblue'};"
+     style="transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1}); background-color: {showTooltip ? 'darkblue' : 'royalblue'};"
      role="link"
      tabindex="0"
      on:mouseenter={handleMouseEnter}
@@ -49,5 +50,9 @@ style="transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1}); background-co
         height: 100%;
         transform-origin: bottom;
         transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+    .current {
+        background-color: dodgerblue;
     }
 </style>

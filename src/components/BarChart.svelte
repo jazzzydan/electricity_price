@@ -5,6 +5,7 @@
     import type {PricePair} from "../utilities/apiClient";
 
     export let priceDataForCountry: PricePair[]
+    let currentHour: number
 
     //TODO: explore if await is applicable.
     $: maxValue = priceDataForCountry.length > 0 ? Math.max(...priceDataForCountry.map(pair => pair.price)) : 1000
@@ -25,16 +26,16 @@
             {/each}
         </div>
     </div>
-
 </div>
 <div class="main">
     <div class="timestamp-area">
         <div class="y-axis"></div>
         <div class="timestamp">
-            <Hours/>
+            <Hours count={priceDataForCountry.length}/>
         </div>
     </div>
 </div>
+
 <style>
     .main {
         display: flex;
@@ -82,7 +83,6 @@
         display: flex;
         width: 80vw;
         min-width: 600px;
-        height: 4vh;
+        height: 5vh;
     }
-
 </style>

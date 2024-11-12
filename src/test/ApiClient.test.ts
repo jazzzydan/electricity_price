@@ -1,22 +1,27 @@
 import {beforeEach, describe, expect, test, vi, it} from "vitest";
-import {createEleringApiUrl, exportElectricityPrices} from "../utilities/apiClient";
+import {
+    type ApiResponse,
+    createEleringApiUrl,
+    exportElectricityPrices,
+    type PricesByCountry
+} from "../utilities/apiClient";
 
 describe('ApiClient', async () => {
     beforeEach(() => {
         vi.clearAllMocks()
     })
-    const testApiResponse = {
+    const testApiResponse: ApiResponse = {
         success: true,
         data: {
-            'ee': [
+            ee: [
                 {timestamp: 1730890800, price: 74.8300},
                 {timestamp: 1730894400, price: 89.2300},
             ],
-            'lv': [
+            lv: [
                 {timestamp: 1730890800, price: 74.8300},
                 {timestamp: 1730894400, price: 89.2300},
             ]
-        }
+        } as PricesByCountry
     }
 
     const date = '2024-11-06'
