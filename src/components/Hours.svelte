@@ -5,7 +5,6 @@
         const hour = (i + 1).toString().padStart(2, '0');
         return `${hour}:00`;
     });
-
     hours[23] = '00:00';
 
     const shouldShowLabel = (index: number): boolean => {

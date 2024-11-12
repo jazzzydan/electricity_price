@@ -7,8 +7,8 @@ describe('Bar.svelte', () => {
         //Arrange + Act
         const {container} = render(Bar, {
             price: 10,
-            hoverPrice: 10,
-            timestamp: 0
+            hoverPrice: 10
+
         })
         const bar = container.querySelector('.bar')
 
@@ -19,8 +19,8 @@ describe('Bar.svelte', () => {
         //Arrange + act
         const {container} = render(Bar, {
             price: -10,
-            hoverPrice: 10,
-            timestamp: 0
+            hoverPrice: 10
+
         })
         const bar = container.querySelector('.bar')
         const computedStyle = getComputedStyle(bar!);

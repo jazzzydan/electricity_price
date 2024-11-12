@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ElectricityPrices from "./components/ElectricityPrices.svelte";
+    import ElectricityPrices from "./components/Layout.svelte";
 </script>
 <main>
     <div>

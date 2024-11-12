@@ -1,7 +1,8 @@
 import DateSwitcher from "../components/DateSwitcher.svelte";
 import {expect, test} from "vitest";
-import {today} from "../utilities/dates";
+import {type ISODate, today, toISODate} from "../utilities/dates";
 import {fireEvent, render} from "@testing-library/svelte";
+import {tick} from "svelte";
 
 test('initial date is today', () => {
     const {container} = render(DateSwitcher)
@@ -35,6 +36,19 @@ test('can switch to next month', async () => {
     await fireEvent.click(buttons[1])
     // Assert (state 3)
     expect(container.querySelector('input')!.value).toBe('2024-11-01')
+})
+
+test('date after tomorrow is not selectable', async ()=>{
+    //Arrange
+    const testDate: ISODate = toISODate(new Date())
+    const {container} = render(DateSwitcher, {date: testDate})
+    const buttons = container.querySelectorAll('button')
+    //Act
+    await fireEvent.click(buttons[1])
+    await tick()
+
+    //Assert
+    expect(buttons[1].disabled).toBe(true);
 })
 
 //TODO: test time switch from summer to winter time and vice versa
