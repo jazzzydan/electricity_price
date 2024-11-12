@@ -1,11 +1,14 @@
 <script lang="ts">
+    export let count: number
     let windowWidth = window.innerWidth;
 
-    const hours = Array.from({ length: 24 }, (_, i) => {
+    //TODO: correct time assigning for switching to summer or winter time
+
+    const hours = Array.from({ length: count }, (_, i) => {
         const hour = (i + 1).toString().padStart(2, '0');
         return `${hour}:00`;
     });
-    hours[23] = '00:00';
+    hours[count - 1] = '00:00';
 
     const shouldShowLabel = (index: number): boolean => {
         if (windowWidth > 600) return true;
@@ -27,13 +30,13 @@
     .hour-labels {
         display: flex;
         justify-content: space-between;
+        font-family: Helvetica, serif;
         font-size: 14px;
         width: 100%;
         flex-wrap: wrap;
     }
     .hour-label {
         text-align: center;
-        font-weight: bold;
         white-space: nowrap;
     }
 </style>

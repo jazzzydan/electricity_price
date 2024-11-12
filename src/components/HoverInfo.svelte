@@ -1,12 +1,13 @@
-
 <script lang="ts">
+    import {t} from "../i18n";
+
     export let price: number;
-    export let x: number = 0;
-    export let y: number = 0;
+    export let x = 0;
+    export let y = 0;
 </script>
 
 <div class="hover-info" style="top: {y}px; left: {x}px;">
-    {price.toFixed(2)} cent/kWh
+    {price.toFixed(2)} {t.units.cents}/{t.units.kWh}
 </div>
 
 <style>

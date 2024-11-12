@@ -83,6 +83,6 @@
         display: flex;
         width: 80vw;
         min-width: 600px;
-        height: 5vh;
+        height: 4vh;
     }
 </style>

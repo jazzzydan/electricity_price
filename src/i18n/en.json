@@ -1,0 +1,15 @@
+{
+  "title": "ELECTRICITY PRICES",
+  "dates": {
+    "next": "Next day",
+    "previous": "Previous day"
+  },
+  "unitOfMeasure": "c/kWh",
+  "units": {
+    "cents": "c",
+    "kWh": "kWh"
+  },
+  "errorMessage": {
+    "noPricesAvailable": "Sorry... Not enough data for 24h chart\\nPrices will be available later in the afternoon"
+  }
+}

@@ -1,9 +1,11 @@
 <script lang="ts">
+    import {t} from "../i18n";
+
     export let yAxisValue: number
 </script>
 
 <div class="main">
-    <p class="y-axis-value">{yAxisValue.toFixed(0)} c/kWh</p>
+    <p class="y-axis-value">{yAxisValue.toFixed(0)} {t.units.cents}/{t.units.kWh}</p>
     <div class="dashed-line"></div>
 </div>
 
@@ -16,9 +18,10 @@
     }
 
     .y-axis-value {
+        font-family: Helvetica, serif;
         font-weight: bold;
+        font-size: 16px;
         color: royalblue;
-        font-size: 20px
     }
 
     .dashed-line {

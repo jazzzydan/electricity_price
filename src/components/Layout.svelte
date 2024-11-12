@@ -9,6 +9,7 @@
         exportElectricityPrices, type PricePair,
     } from "../utilities/apiClient";
     import type {ISODate} from "../utilities/dates";
+    import {t} from "../i18n";
 
     export let priceDataForCountry: PricePair[] = [];
     export let listOfCountries: CountryCode[] = [];
@@ -51,7 +52,7 @@
 </script>
 
 <main>
-    <div><h2>ELECTRICITY PRICES</h2></div>
+    <div><h2>{t.title}</h2></div>
     <div>
         <DateSwitcher bind:date/>
     </div>
@@ -64,8 +65,7 @@
             <BarChart {priceDataForCountry}/>
         {:else}
             <div>
-                <p>Sorry... Not enough data for 24h chart</p>
-                <p>Prices will be available later in the afternoon</p>
+                <p>{t.errorMessage.noPricesAvailable}</p>
             </div>
         {/if}
     </div>
@@ -80,7 +80,7 @@
     }
 
     .chart-container {
-        height: 65vh;
+        height: 64vh;
     }
 
     .loading-wrapper {
