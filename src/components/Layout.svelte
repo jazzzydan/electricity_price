@@ -94,27 +94,25 @@
     div {
         margin-bottom: 1em;
     }
-
-    /* Flex container for DateSwitcher and LanguageSelector */
+    /*Todo, change the positioning of DateSwitcher element, align to centre*/
     .selectors-container {
-        display: flex;                    /* Align items horizontally */
-        justify-content: center;          /* Center items horizontally */
-        align-items: center;              /* Vertically center the items */
-        width: 100%;                      /* Ensure full width */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
     }
 
     .date-selector {
         text-align: center;
-        justify-content: center;   /* Center the DateSwitcher inside its div */
         display: inline-block;
-        margin-left: auto;
-
+        flex-grow: 1;
+        margin-right: 16px;
     }
 
     .language-selector {
-        display: flex;                   /* Flexbox container */
+        display: flex;
         justify-content: flex-end;
-        margin-left: auto;    /* Align LanguageSelector to the right */
+        margin-left: auto;
     }
 
     .chart-container {
@@ -128,6 +126,4 @@
         align-items: center;
         height: 100%;
     }
-
-
 </style>
