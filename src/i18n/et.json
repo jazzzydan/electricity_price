@@ -1,2 +1,20 @@
 {
+  "title": "ELEKTRIHINNAD",
+  "dates": {
+    "next": "Järgmine päev",
+    "previous": "Eelmine päev"
+  },
+  "unitOfMeasure": "senti/kWh",
+  "units": {
+    "cents": "s",
+    "kWh": "kWh"
+  },
+  "errorMessage": {
+    "noPricesAvailable": "Kahjuks ei ole 24h graafiku jaoks piisavalt andmeid",
+    "pricesAvailableLater": "Hinnad on saadaval pärastlõunal"
+  },
+  "languages": {
+    "en": "English",
+    "et": "Eesti keel"
+  }
 }

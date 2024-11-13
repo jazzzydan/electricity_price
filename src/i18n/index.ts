@@ -1,6 +1,12 @@
-import langs from '../i18n/langs.json';
-import type en from '../i18n/en.json'
+import langs from './langs.json';
+import type en from './en.json'
 
-export {langs}
-export const lang = Object.keys(langs)[0]
-export let t: typeof en = await import('../i18n/' + lang + '.json')
+const navigatorLang = navigator.language.split('-')[0]
+
+export const lang = localStorage['lang'] ?? navigatorLang ?? langs[0]
+
+export function changeLang(lang: typeof langs[number]){
+    localStorage['lang'] = lang
+    location.reload()
+}
+export let t: typeof en = await import('./' + lang + '.json')

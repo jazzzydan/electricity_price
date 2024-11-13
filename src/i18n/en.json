@@ -10,6 +10,11 @@
     "kWh": "kWh"
   },
   "errorMessage": {
-    "noPricesAvailable": "Sorry... Not enough data for 24h chart\\nPrices will be available later in the afternoon"
+    "noPricesAvailable": "Sorry... Not enough data for 24h chart",
+    "pricesAvailableLater": "Prices will be available later in the afternoon"
+  },
+  "languages": {
+    "en": "English",
+    "et": "Eesti keel"
   }
 }

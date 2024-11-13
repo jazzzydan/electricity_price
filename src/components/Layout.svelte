@@ -9,7 +9,9 @@
         exportElectricityPrices, type PricePair,
     } from "../utilities/apiClient";
     import type {ISODate} from "../utilities/dates";
-    import {t} from "../i18n";
+    import {changeLang, lang, t} from "../i18n";
+    import LanguageSelector from "./LanguageSelector.svelte";
+
 
     export let priceDataForCountry: PricePair[] = [];
     export let listOfCountries: CountryCode[] = [];
@@ -18,6 +20,8 @@
     let fetchedData: ApiResponse | null = null;
     let loading: boolean
     let dataIsAvailable: boolean
+
+    //TODO: implement "delayed loading" to show loading bar with short delay
 
     async function electricityPricesDispatcher(date: ISODate) {
         loading = true;
@@ -52,9 +56,20 @@
 </script>
 
 <main>
-    <div><h2>{t.title}</h2></div>
     <div>
-        <DateSwitcher bind:date/>
+        <h2>{t.title}</h2>
+    </div>
+
+
+    <div class="selectors-container">
+
+        <div class="date-selector">
+            <DateSwitcher bind:date/>
+        </div>
+
+        <div class="language-selector">
+            <LanguageSelector/>
+        </div>
     </div>
     <div class="chart-container">
         {#if loading}
@@ -66,6 +81,7 @@
         {:else}
             <div>
                 <p>{t.errorMessage.noPricesAvailable}</p>
+                <p>{t.errorMessage.pricesAvailableLater}</p>
             </div>
         {/if}
     </div>
@@ -79,6 +95,28 @@
         margin-bottom: 1em;
     }
 
+    /* Flex container for DateSwitcher and LanguageSelector */
+    .selectors-container {
+        display: flex;                    /* Align items horizontally */
+        justify-content: center;          /* Center items horizontally */
+        align-items: center;              /* Vertically center the items */
+        width: 100%;                      /* Ensure full width */
+    }
+
+    .date-selector {
+        text-align: center;
+        justify-content: center;   /* Center the DateSwitcher inside its div */
+        display: inline-block;
+        margin-left: auto;
+
+    }
+
+    .language-selector {
+        display: flex;                   /* Flexbox container */
+        justify-content: flex-end;
+        margin-left: auto;    /* Align LanguageSelector to the right */
+    }
+
     .chart-container {
         height: 64vh;
     }
@@ -90,4 +128,6 @@
         align-items: center;
         height: 100%;
     }
+
+
 </style>
