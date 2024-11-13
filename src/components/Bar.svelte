@@ -1,8 +1,14 @@
 <script lang="ts">
-    import HoverInfo from "./HoverInfo.svelte";
+    import HoverInfo from "./HoverInfo.svelte"
+    import {today} from "../utilities/dates"
 
-    export let price: number;
-    export let hoverPrice: number;
+    export let price: number
+    export let hoverPrice: number
+    export let hour: number
+    let currentHour: number = new Date().getHours();
+    export let isToday: boolean
+
+    //TODO: isToday to be passed as prop from Layout based on fetchedData, or alternative solution to be considered
 
     let showTooltip = false;
     let mouseX = 0
@@ -18,18 +24,21 @@
     }
 
     function handleMouseLeave() {
-        showTooltip = false;
+        showTooltip = false
     }
 
     function updateTooltipPosition(event: MouseEvent) {
         mouseX = event.clientX + 10
         mouseY = event.clientY + 10
     }
+
+    function isCurrentHour() {
+        return isToday && hour === currentHour
+    }
 </script>
 
-<!--     TODO: ask about the role and its parameters region, button-->
-<!--     class:current={...}-->
 <div class="bar"
+     class:current={isCurrentHour()}
      style="transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1}); background-color: {showTooltip ? 'darkblue' : 'rgba(65, 105, 225, 0.9)'};"
      role="link"
      tabindex="0"

@@ -52,7 +52,7 @@ function handleError(reason: string) {
 //         vi.clearAllMocks()
 //     })
 //
-// //TODO: use types
+
 //     const testResponseData = {
 //         success: true,
 //         data: {

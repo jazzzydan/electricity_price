@@ -9,7 +9,6 @@ describe('ElectricityPrices', async () => {
         vi.clearAllMocks()
     })
 
-//TODO: use types
     const testResponseData = {
         success: true,
         data: {
