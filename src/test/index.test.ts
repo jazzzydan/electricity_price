@@ -1,5 +1,5 @@
 import {beforeEach, describe, expect, it, vi} from "vitest";
-import {navigatorLang} from "../i18n/";
+import {changeLang, navigatorLang} from "../i18n/";
 
 describe('index', () => {
     beforeEach(() => {
@@ -22,6 +22,22 @@ describe('index', () => {
         const result = navigatorLang()
         // Assert
         expect(result).toEqual('en')
+    })
+
+    it('should store language to localStorage when language is changed', () => {
+        vi.mock('../i18n/index', async () => {
+            const actual = await vi.importActual('../i18n/index');
+            return {
+                ...actual,
+                location: { reload: vi.fn() },
+            };
+        });
+
+        //Act
+        changeLang('fr')
+
+        //Assert
+        expect(localStorage['lang']).toBe('fr');
     })
 
 })
