@@ -1,11 +1,12 @@
-import {describe, expect, test, vi} from "vitest"
+import {describe, expect, it, vi} from "vitest"
 import {fireEvent, render} from "@testing-library/svelte";
 import LanguageSelector from "../components/LanguageSelector.svelte";
 import {changeLang, t} from "../i18n";
+import langs from '../i18n/langs.json'
 import {tick} from "svelte";
 
-describe('LanguageSelector.svelte', () => {
-    test('language selector renders the option to choose language', () => {
+describe('LanguageSelector', () => {
+    it('language selector renders the option to choose language', () => {
         //Arrange  //Act
         const {getAllByRole} = render(LanguageSelector)
         const languages = getAllByRole('option') as HTMLOptionElement[]
@@ -13,34 +14,28 @@ describe('LanguageSelector.svelte', () => {
         expect(languages).toHaveLength(Object.keys(t.languages).length)
     })
 
-
-    test('language selector is present and has default language', () => {
+    it('language selector is present and has default language', () => {
         //Arrange//Act
-        const {getByRole} = render(LanguageSelector)
-        const select = (getByRole('combobox') as HTMLSelectElement)
+        const {container} = render(LanguageSelector)
+        const select = container.querySelector('select')
         //Assert
         expect(select).toBeInTheDocument()
-        expect(select.value).toEqual('en')
+        expect(select!.value).toEqual('en')
     })
-    test('language selector changes page title language', async () =>{
+
+    it('language selector activates language change', async () => {
         vi.mock('../i18n', async () => {
             const actual = await vi.importActual('../i18n')
             return {...actual, changeLang: vi.fn()}
         });
         const {getByRole} = render(LanguageSelector)
-        const select = (getByRole('combobox') as HTMLSelectElement)
-        const secondOption = (select.querySelector('option[value="et"]')as HTMLOptionElement)
+        const select = getByRole('combobox') as HTMLSelectElement
 
-        await fireEvent.change(select,{target:{value:secondOption.value}})
+        select.selectedIndex = 1
+        await fireEvent.change(select)
         await tick()
 
-        expect((select as HTMLSelectElement).value).toEqual('et')
-        expect(changeLang).toBeCalledWith("et")
-
+        expect(select.value).toEqual(langs[1])
+        expect(changeLang).toBeCalledWith(langs[1])
     })
-
-
-
-
-
 })

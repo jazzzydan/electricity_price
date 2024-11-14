@@ -1,7 +1,8 @@
 import {beforeEach, describe, expect, it, vi} from "vitest";
 import Layout from "../components/Layout.svelte";
-import {act, render} from "@testing-library/svelte";
+import {act, fireEvent, render} from "@testing-library/svelte";
 import {tick} from "svelte";
+import LanguageSelector from "../components/LanguageSelector.svelte";
 
 // Act (väljakutse)
 describe('ElectricityPrices', async () => {
@@ -9,7 +10,6 @@ describe('ElectricityPrices', async () => {
         vi.clearAllMocks()
     })
 
-//TODO: use types
     const testResponseData = {
         success: true,
         data: {
@@ -42,4 +42,6 @@ describe('ElectricityPrices', async () => {
         // assert that data was received/rendered
         expect(container.querySelectorAll('.bar')).to.have.length(2)
     });
+
+    // TODO: test t.title is visible
 });
