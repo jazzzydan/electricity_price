@@ -53,6 +53,7 @@
     $: if (fetchedData && countryCode) {
         priceDataForCountry = getPriceDataForCountry(fetchedData, countryCode)
     }
+    // TODO: Fix the styling layout issue(overlapping texts) on the last available day
 </script>
 
 <main>
