@@ -36,7 +36,7 @@
 <div class="bar-container">
     <div class="bar"
          class:current={isCurrentHour()}
-         style="transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1}); background-color: {showTooltip ? 'darkblue' : 'rgba(65, 105, 225, 0.9)'};"
+         style="transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1}); background-color: {showTooltip ? 'cornflowerblue' : 'rgba(65, 105, 225, 0.9)'};"
          role="link"
          tabindex="0"
          on:mouseenter={handleMouseEnter}
@@ -67,7 +67,7 @@
     }
 
     .current {
-        background-color: darkblue !important;
+        background-color: cornflowerblue !important;
     }
 
     .hour {
