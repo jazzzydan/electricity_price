@@ -1,8 +1,8 @@
 <script lang="ts">
-    import ElectricityPrices from "./components/Layout.svelte";
+    import Layout from "./components/Layout.svelte";
 </script>
 <main>
     <div>
-        <ElectricityPrices/>
+        <Layout/>
     </div>
 </main>

@@ -6,7 +6,7 @@ export interface ApiResponse {
 }
 
 export type PricesByCountry = Record<CountryCode, PricePair[]>
-export type CountryCode = `${string & { length: 2 }}`
+export type CountryCode = `${'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'}${'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'}`
 
 export interface PricePair {
     timestamp: number

@@ -28,10 +28,9 @@
 </script>
 
 <!--     TODO: ask about the role and its parameters region, button-->
-
 <!--     class:current={...}-->
 <div class="bar"
-     style="transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1}); background-color: {showTooltip ? 'darkblue' : 'royalblue'};"
+     style="transform: scaleY({price}) scaleX({showTooltip ? 1.1 : 1}); background-color: {showTooltip ? 'darkblue' : 'rgba(65, 105, 225, 0.9)'};"
      role="link"
      tabindex="0"
      on:mouseenter={handleMouseEnter}
@@ -46,10 +45,10 @@
 <style>
     .bar {
         flex: 1;
-        background-color: royalblue;
         height: 100%;
         transform-origin: bottom;
         transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
     }
 
     .current {

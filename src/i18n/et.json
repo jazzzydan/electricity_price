@@ -1,0 +1,27 @@
+{
+  "title": "ELEKTRIHINNAD",
+  "currentPrice": "Hetke hind:",
+  "dates": {
+    "next": "Järgmine päev",
+    "previous": "Eelmine päev"
+  },
+  "unitOfMeasure": "senti/kWh",
+  "units": {
+    "cents": "s",
+    "kWh": "kWh"
+  },
+  "errorMessage": {
+    "noPricesAvailable": "Kahjuks ei ole 24h graafiku jaoks piisavalt andmeid",
+    "pricesAvailableLater": "Hinnad on saadaval pärastlõunal",
+    "currentPriceNotAvailable": "Hetke hind ei ole kättesaadav"
+  },
+  "devices": {
+    "electricalCementMixer": "Elektriline segumasin",
+    "electricalFireplace": "Elktriline kamin",
+    "rockHammer": "Elektriline vasar"
+  },
+  "languages": {
+    "en": "English",
+    "et": "Eesti keel"
+  }
+}

@@ -1,6 +1,7 @@
 <script lang="ts">
-    import {tomorrow, arePricesAvailableFor, type ISODate, today} from "../utilities/dates";
-    import {toISODate} from "../utilities/dates.js";
+    import {tomorrow, arePricesAvailableFor, type ISODate, today} from "../../utilities/dates";
+    import {toISODate} from "../../utilities/dates.js";
+    import {t} from "../../i18n";
 
     export let date: ISODate = today;
 
@@ -12,9 +13,9 @@
 </script>
 
 <div>
-    <button on:click={() => incrementDate(-1)}>Previous Day</button>
+    <button on:click={() => incrementDate(-1)}>{t.dates.previous}</button>
     <input type="date" bind:value={date} max={tomorrow}>
-    <button disabled={!arePricesAvailableFor(date)} on:click={() => incrementDate(1)}>Next Day</button>
+    <button disabled={!arePricesAvailableFor(date)} on:click={() => incrementDate(1)}>{t.dates.next}</button>
 </div>
 
 <style>

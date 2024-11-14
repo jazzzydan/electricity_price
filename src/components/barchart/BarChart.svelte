@@ -2,17 +2,15 @@
     import Bar from "./Bar.svelte";
     import Line from "./Line.svelte";
     import Hours from "./Hours.svelte";
-    import type {PricePair} from "../utilities/apiClient";
+    import type {PricePair} from "../../utilities/apiClient";
 
     export let priceDataForCountry: PricePair[]
-    let currentHour: number
 
-    //TODO: explore if await is applicable.
     $: maxValue = priceDataForCountry.length > 0 ? Math.max(...priceDataForCountry.map(pair => pair.price)) : 1000
     $: yAxisValues = maxValue ? [maxValue, maxValue * 0.75, maxValue * 0.5, maxValue * 0.25, 0] : []
 </script>
 
-<div class="main">
+<div class="bar-chart">
     <div class="chart-area">
         <div class="lines">
             {#each yAxisValues as yAxisValue}
@@ -27,17 +25,19 @@
         </div>
     </div>
 </div>
-<div class="main">
+<div class="bar-chart">
     <div class="timestamp-area">
         <div class="y-axis"></div>
         <div class="timestamp">
-            <Hours count={priceDataForCountry.length}/>
+            {#each priceDataForCountry as pair, index}
+                <Hours hour={pair.timestamp} totalHours={priceDataForCountry.length} />
+            {/each}
         </div>
     </div>
 </div>
 
 <style>
-    .main {
+    .bar-chart {
         display: flex;
         flex-direction: row;
     }
@@ -61,7 +61,6 @@
     }
 
     .y-axis {
-        /*flex: 1;*/
         width: 6em;
     }
 
@@ -83,6 +82,6 @@
         display: flex;
         width: 80vw;
         min-width: 600px;
-        height: 5vh;
+        height: 4vh;
     }
 </style>

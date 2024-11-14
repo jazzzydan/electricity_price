@@ -4,7 +4,7 @@ import {
     createEleringApiUrl,
     exportElectricityPrices,
     type PricesByCountry
-} from "../utilities/apiClient";
+} from "./apiClient";
 
 describe('ApiClient', async () => {
     beforeEach(() => {
@@ -23,7 +23,6 @@ describe('ApiClient', async () => {
             ]
         } as PricesByCountry
     }
-
     const date = '2024-11-06'
 
     it('should create URL based on provided date', () => {

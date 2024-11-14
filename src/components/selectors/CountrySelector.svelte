@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {CountryCode} from "../utilities/apiClient";
+    import type {CountryCode} from "../../utilities/apiClient";
 
     export let listOfCountries : CountryCode[] = []
     export let countryCode: CountryCode
@@ -17,9 +17,3 @@
         {country.toUpperCase()}
     </label>
 {/each}
-
-
-
-
-
-

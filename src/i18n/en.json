@@ -1,0 +1,27 @@
+{
+  "title": "ELECTRICITY PRICES",
+  "currentPrice": "Current price:",
+  "dates": {
+    "next": "Next day",
+    "previous": "Previous day"
+  },
+  "unitOfMeasure": "c/kWh",
+  "units": {
+    "cents": "c",
+    "kWh": "kWh"
+  },
+  "errorMessage": {
+    "noPricesAvailable": "Sorry... Not enough data for 24h chart",
+    "pricesAvailableLater": "Prices will be available later in the afternoon",
+    "currentPriceNotAvailable": "Current price not available"
+  },
+  "devices": {
+    "electricalCementMixer": "Electrical cement mixer",
+    "electricalFireplace": "Electrical fireplace",
+    "rockHammer": "Rock Hammer"
+  },
+  "languages": {
+    "en": "English",
+    "et": "Eesti keel"
+  }
+}
