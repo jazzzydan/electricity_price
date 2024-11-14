@@ -14,6 +14,5 @@ export function toISODate(d: Date) {
 }
 
 export function arePricesAvailableFor(date: ISODate) {
-    // TODO: what if tomorrow's prices are already available?
     return date < tomorrow
 }

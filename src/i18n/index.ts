@@ -15,3 +15,4 @@ export function changeLang(lang: typeof langs[number]){
 }
 
 export let t: typeof en = await import('./' + lang + '.json')
+

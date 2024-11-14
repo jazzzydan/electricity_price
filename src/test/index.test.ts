@@ -6,7 +6,7 @@ describe('index', () => {
         vi.clearAllMocks()
     })
 
-    it('should return navigator.language if it is present in languages list', () =>{
+    it('should return navigator.language if it is present in languages list', () => {
         // Arrange
         vi.spyOn(navigator, 'language', 'get').mockReturnValue('en-US')
         // Act
@@ -15,7 +15,7 @@ describe('index', () => {
         expect(result).toEqual('en')
     })
 
-    it('should return default language if navigator.language is not present in languages list', () =>{
+    it('should return default language if navigator.language is not present in languages list', () => {
         // Arrange
         vi.spyOn(navigator, 'language', 'get').mockReturnValue('fr-FR')
         // Act
@@ -24,20 +24,19 @@ describe('index', () => {
         expect(result).toEqual('en')
     })
 
-    it('should store language to localStorage when language is changed', () => {
-        vi.mock('../i18n/index', async () => {
-            const actual = await vi.importActual('../i18n/index');
-            return {
-                ...actual,
-                location: { reload: vi.fn() },
-            };
+    it('should store language to localStorage when language is changed', async () => {
+        const reloadMock = vi.fn();
+        Object.defineProperty(window, 'location', {
+            value: {
+                reload: reloadMock
+            },
+            writable: true
         });
-
-        //Act
-        changeLang('fr')
-
-        //Assert
+        // Act
+        changeLang('fr');
+        // Assert
         expect(localStorage['lang']).toBe('fr');
-    })
+        expect(reloadMock).toHaveBeenCalled();
+    });
 
 })

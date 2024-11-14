@@ -1,5 +1,7 @@
 <script lang="ts">
     import {changeLang, lang, t} from "../i18n";
+
+    //TODO: on language change country selection should not be reset
 </script>
 
 <select value={lang} on:change="{(event) => changeLang(event.currentTarget.value)}" class="language-selector">

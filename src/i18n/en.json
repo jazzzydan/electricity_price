@@ -1,5 +1,6 @@
 {
   "title": "ELECTRICITY PRICES",
+  "currentPrice": "Current price:",
   "dates": {
     "next": "Next day",
     "previous": "Previous day"
@@ -11,7 +12,8 @@
   },
   "errorMessage": {
     "noPricesAvailable": "Sorry... Not enough data for 24h chart",
-    "pricesAvailableLater": "Prices will be available later in the afternoon"
+    "pricesAvailableLater": "Prices will be available later in the afternoon",
+    "currentPriceNotAvailable": "Current price not available"
   },
   "languages": {
     "en": "English",

@@ -9,9 +9,9 @@
         exportElectricityPrices, type PricePair,
     } from "../utilities/apiClient";
     import type {ISODate} from "../utilities/dates";
-    import {changeLang, lang, t} from "../i18n";
+    import {t} from "../i18n";
     import LanguageSelector from "./LanguageSelector.svelte";
-
+    import CurrentPrice from "./CurrentPrice.svelte";
 
     export let priceDataForCountry: PricePair[] = [];
     export let listOfCountries: CountryCode[] = [];
@@ -59,14 +59,13 @@
     <div>
         <h2>{t.title}</h2>
     </div>
-
-
     <div class="selectors-container">
-
+        <div class="current-price">
+            <CurrentPrice {countryCode}/>
+        </div>
         <div class="date-selector">
             <DateSwitcher bind:date/>
         </div>
-
         <div class="language-selector">
             <LanguageSelector/>
         </div>
@@ -94,25 +93,28 @@
     div {
         margin-bottom: 1em;
     }
-    /*Todo, change the positioning of DateSwitcher element, align to centre*/
+
     .selectors-container {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
+        position: relative;
+    }
+
+    .current-price {
+        position: absolute;
+        left: 0;
     }
 
     .date-selector {
         text-align: center;
-        display: inline-block;
         flex-grow: 1;
-        margin-right: 16px;
     }
 
     .language-selector {
-        display: flex;
-        justify-content: flex-end;
-        margin-left: auto;
+        position: absolute;
+        right: 0;
     }
 
     .chart-container {

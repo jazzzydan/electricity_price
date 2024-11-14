@@ -4,13 +4,13 @@
     export let yAxisValue: number
 </script>
 
-<div class="main">
+<div class="bar-chart">
     <p class="y-axis-value">{yAxisValue.toFixed(0)} {t.units.cents}/{t.units.kWh}</p>
     <div class="dashed-line"></div>
 </div>
 
 <style>
-    .main {
+    .bar-chart {
         display: flex;
         align-items: center;
         gap: 2px;

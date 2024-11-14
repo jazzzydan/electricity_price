@@ -1,5 +1,6 @@
 {
   "title": "ELEKTRIHINNAD",
+  "currentPrice": "Hetke hind:",
   "dates": {
     "next": "Järgmine päev",
     "previous": "Eelmine päev"
@@ -11,7 +12,8 @@
   },
   "errorMessage": {
     "noPricesAvailable": "Kahjuks ei ole 24h graafiku jaoks piisavalt andmeid",
-    "pricesAvailableLater": "Hinnad on saadaval pärastlõunal"
+    "pricesAvailableLater": "Hinnad on saadaval pärastlõunal",
+    "currentPriceNotAvailable": "Hetke hind ei ole kättesaadav"
   },
   "languages": {
     "en": "English",

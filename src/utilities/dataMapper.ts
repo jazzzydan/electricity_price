@@ -25,4 +25,3 @@ export function convertTimestamp(timestamp: number): number {
     const date = new Date(timestamp * 1000);
     return date.getHours();
 }
-
