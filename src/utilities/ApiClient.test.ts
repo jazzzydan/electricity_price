@@ -4,7 +4,7 @@ import {
     createEleringApiUrl,
     exportElectricityPrices,
     type PricesByCountry
-} from "../utilities/apiClient";
+} from "./apiClient";
 
 describe('ApiClient', async () => {
     beforeEach(() => {

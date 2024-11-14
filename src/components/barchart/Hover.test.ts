@@ -1,6 +1,6 @@
 import {describe, expect, test} from "vitest";
 import {render} from "@testing-library/svelte";
-import HoverInfo from "../components/HoverInfo.svelte";
+import HoverInfo from "./HoverInfo.svelte";
 
 
 

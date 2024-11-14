@@ -1,9 +1,9 @@
 <script lang="ts">
 
-    import {type CountryCode, exportElectricityPrices, type PricePair} from "../utilities/apiClient";
-    import {today} from "../utilities/dates";
-    import {getPriceDataForCountry} from "../utilities/dataMapper";
-    import {t} from "../i18n";
+    import {type CountryCode, exportElectricityPrices, type PricePair} from "../../utilities/apiClient";
+    import {today} from "../../utilities/dates";
+    import {getPriceDataForCountry} from "../../utilities/dataMapper";
+    import {t} from "../../i18n";
 
     export let countryCode: CountryCode
     let priceDataForCountry: PricePair[] = []

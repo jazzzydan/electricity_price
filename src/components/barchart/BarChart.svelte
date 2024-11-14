@@ -2,7 +2,7 @@
     import Bar from "./Bar.svelte";
     import Line from "./Line.svelte";
     import Hours from "./Hours.svelte";
-    import type {PricePair} from "../utilities/apiClient";
+    import type {PricePair} from "../../utilities/apiClient";
 
     export let priceDataForCountry: PricePair[]
 

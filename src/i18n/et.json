@@ -15,6 +15,11 @@
     "pricesAvailableLater": "Hinnad on saadaval pärastlõunal",
     "currentPriceNotAvailable": "Hetke hind ei ole kättesaadav"
   },
+  "devices": {
+    "electricalCementMixer": "Elektriline segumasin",
+    "electricalFireplace": "Elktriline kamin",
+    "rockHammer": "Elektriline vasar"
+  },
   "languages": {
     "en": "English",
     "et": "Eesti keel"

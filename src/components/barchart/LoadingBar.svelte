@@ -1,5 +1,5 @@
 <script lang="ts">
-    import gifPath from '../assets/LoadingBattery.gif'
+    import gifPath from '../../assets/LoadingBattery.gif'
 </script>
 
 <img src={gifPath} alt="Loading animation" class="gif-container">

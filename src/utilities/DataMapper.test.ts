@@ -1,6 +1,6 @@
 import {describe, expect, test} from "vitest";
-import {getCountries, getPriceDataForCountry} from "../utilities/dataMapper";
-import type {ApiResponse, CountryCode, PricesByCountry} from "../utilities/apiClient";
+import {getCountries, getPriceDataForCountry} from "./dataMapper";
+import type {ApiResponse, CountryCode, PricesByCountry} from "./apiClient";
 
 describe('DataMapper', () => {
     //Arrange 1

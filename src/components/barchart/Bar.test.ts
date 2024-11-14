@@ -1,6 +1,6 @@
 import {render} from "@testing-library/svelte";
 import {describe, expect, test} from "vitest";
-import Bar from "../components/Bar.svelte";
+import Bar from "./Bar.svelte";
 
 describe('Bar.svelte', () => {
     test('bar is rendered', () => {

@@ -1,8 +1,8 @@
 <script lang="ts">
-    import DateSwitcher from "./DateSwitcher.svelte";
-    import CountrySelector from "./CountrySelector.svelte";
-    import BarChart from "./BarChart.svelte";
-    import LoadingBar from "./LoadingBar.svelte";
+    import DateSwitcher from "./selectors/DateSwitcher.svelte";
+    import CountrySelector from "./selectors/CountrySelector.svelte";
+    import BarChart from "./barchart/BarChart.svelte";
+    import LoadingBar from "./barchart/LoadingBar.svelte";
     import {getCountries, getPriceDataForCountry} from "../utilities/dataMapper";
     import {
         type ApiResponse, type CountryCode,
@@ -10,8 +10,9 @@
     } from "../utilities/apiClient";
     import type {ISODate} from "../utilities/dates";
     import {t} from "../i18n";
-    import LanguageSelector from "./LanguageSelector.svelte";
-    import CurrentPrice from "./CurrentPrice.svelte";
+    import LanguageSelector from "./selectors/LanguageSelector.svelte";
+    import CurrentPrice from "./selectors/CurrentPrice.svelte";
+    import Calculator from "./calculator/Calculator.svelte";
 
     export let priceDataForCountry: PricePair[] = [];
     export let listOfCountries: CountryCode[] = [];
@@ -87,6 +88,9 @@
     </div>
     <div>
         <CountrySelector {listOfCountries} bind:countryCode/>
+    </div>
+    <div>
+        <Calculator/>
     </div>
 </main>
 

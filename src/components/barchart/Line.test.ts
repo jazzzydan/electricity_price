@@ -1,6 +1,6 @@
 import {describe, expect, test} from "vitest";
 import {render} from "@testing-library/svelte";
-import Line from "../components/Line.svelte";
+import Line from "./Line.svelte";
 
 describe('Line.svelte',() => {
     test('line tag is rendered',()=>{

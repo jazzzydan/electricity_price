@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {tomorrow, arePricesAvailableFor, type ISODate, today} from "../utilities/dates";
-    import {toISODate} from "../utilities/dates.js";
-    import {t} from "../i18n";
+    import {tomorrow, arePricesAvailableFor, type ISODate, today} from "../../utilities/dates";
+    import {toISODate} from "../../utilities/dates.js";
+    import {t} from "../../i18n";
 
     export let date: ISODate = today;
 

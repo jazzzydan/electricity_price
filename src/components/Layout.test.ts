@@ -1,8 +1,8 @@
 import {beforeEach, describe, expect, it, vi} from "vitest";
-import Layout from "../components/Layout.svelte";
+import Layout from "./Layout.svelte";
 import {act, fireEvent, render} from "@testing-library/svelte";
 import {tick} from "svelte";
-import LanguageSelector from "../components/LanguageSelector.svelte";
+import LanguageSelector from "./selectors/LanguageSelector.svelte";
 
 // Act (väljakutse)
 describe('ElectricityPrices', async () => {

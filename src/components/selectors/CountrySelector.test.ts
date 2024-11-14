@@ -1,5 +1,5 @@
 import {fireEvent, render} from "@testing-library/svelte";
-import CountrySelector from "../components/CountrySelector.svelte";
+import CountrySelector from "./CountrySelector.svelte";
 import {expect, test} from "vitest";
 
 

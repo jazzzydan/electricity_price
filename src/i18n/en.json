@@ -15,6 +15,11 @@
     "pricesAvailableLater": "Prices will be available later in the afternoon",
     "currentPriceNotAvailable": "Current price not available"
   },
+  "devices": {
+    "electricalCementMixer": "Electrical cement mixer",
+    "electricalFireplace": "Electrical fireplace",
+    "rockHammer": "Rock Hammer"
+  },
   "languages": {
     "en": "English",
     "et": "Eesti keel"

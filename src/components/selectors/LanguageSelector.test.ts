@@ -1,8 +1,8 @@
 import {describe, expect, it, vi} from "vitest"
 import {fireEvent, render} from "@testing-library/svelte";
-import LanguageSelector from "../components/LanguageSelector.svelte";
-import {changeLang, t} from "../i18n";
-import langs from '../i18n/langs.json'
+import LanguageSelector from "./LanguageSelector.svelte";
+import {changeLang, t} from "../../i18n";
+import langs from '../../i18n/langs.json'
 import {tick} from "svelte";
 
 describe('LanguageSelector', () => {
