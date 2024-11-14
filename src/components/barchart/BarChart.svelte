@@ -1,11 +1,11 @@
 <script lang="ts">
-    import Bar from "./Bar.svelte";
-    import Line from "./Line.svelte";
-    import Hours from "./Hours.svelte";
-    import type {PricePair} from "../../utilities/apiClient";
+    import Bar from "./Bar.svelte"
+    import Line from "./Line.svelte"
+    import Hours from "./Hours.svelte"
+    import type {PricePair} from "../../utilities/apiClient"
 
     export let priceDataForCountry: PricePair[]
-
+    export let isToday: boolean
     $: maxValue = priceDataForCountry.length > 0 ? Math.max(...priceDataForCountry.map(pair => pair.price)) : 1000
     $: yAxisValues = maxValue ? [maxValue, maxValue * 0.75, maxValue * 0.5, maxValue * 0.25, 0] : []
 </script>
@@ -20,7 +20,7 @@
         <div class="y-axis"></div>
         <div class="bars-area">
             {#each priceDataForCountry as pair}
-                <Bar price={pair.price / maxValue} hoverPrice={pair.price} />
+                <Bar price={pair.price / maxValue} hoverPrice={pair.price} hour={pair.timestamp} isToday={isToday}/>
             {/each}
         </div>
     </div>
