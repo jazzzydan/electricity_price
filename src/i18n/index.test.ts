@@ -28,6 +28,21 @@ describe('i18n', () => {
         expect(location.reload).toHaveBeenCalled()
     })
 
-    // test remembered lang
-    // test remembered lang fallback (if not supported)
+    it('uses locally stored language if supported', () => {
+        vi.stubGlobal('location', {reload: vi.fn()})
+        changeLang('et');
+
+        const detectedLang = detectLang()
+
+        expect(detectedLang).toEqual('et')
+    })
+
+    it('uses default language if locally stored language is not supported', () => {
+        vi.stubGlobal('location', {reload: vi.fn()})
+        changeLang('fr');
+
+        const detectedLang = detectLang()
+
+        expect(detectedLang).toEqual('en')
+    })
 })

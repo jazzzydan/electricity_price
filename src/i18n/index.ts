@@ -5,13 +5,21 @@ export type Lang = typeof langs[number]
 
 function navigatorLang(): Lang {
     const language = navigator.language.split('-')[0]
+    return validateAndReturnLanguage(language)
+}
+
+function localStorageLang(): Lang {
+    const language = localStorage['lang']
+    return validateAndReturnLanguage(language)
+}
+
+function validateAndReturnLanguage(language: Lang): Lang {
     if (langs.indexOf(language) < 0) return langs[0]
-    return language as typeof langs[number]
+    else return language
 }
 
 export function detectLang() {
-    // TODO: ensure stored lang is also supported
-    return localStorage['lang'] ?? navigatorLang() ?? langs[0]
+    return localStorageLang() ?? navigatorLang() ?? langs[0]
 }
 
 export const lang = detectLang()
