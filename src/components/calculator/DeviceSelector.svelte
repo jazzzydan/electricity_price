@@ -1,12 +1,6 @@
 <script lang="ts">
     import {t} from "../../i18n";
 
-    // export type Device = {
-    //     id: string
-    //     kWh: number
-    // }
-    //
-    // let device: Device | null = null
     export let deviceId: string | undefined = undefined
 
 </script>
