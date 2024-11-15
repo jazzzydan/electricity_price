@@ -9,6 +9,7 @@
   "units": {
     "eur": "€",
     "cents": "s",
+    "watt": "Vatti",
     "kWh": "kWh"
   },
   "errorMessage": {
