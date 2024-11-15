@@ -1,7 +1,6 @@
 <script lang="ts">
     import Bar from "./Bar.svelte"
     import Line from "./Line.svelte"
-    import Hours from "./Hours.svelte"
     import type {PricePair} from "../../utilities/apiClient"
 
     export let priceDataForCountry: PricePair[]
@@ -25,23 +24,12 @@
         </div>
     </div>
 </div>
-<div class="bar-chart">
-    <div class="timestamp-area">
-        <div class="y-axis"></div>
-        <div class="timestamp">
-            {#each priceDataForCountry as pair, index}
-                <Hours hour={pair.timestamp} totalHours={priceDataForCountry.length} />
-            {/each}
-        </div>
-    </div>
-</div>
 
 <style>
     .bar-chart {
         display: flex;
         flex-direction: row;
     }
-
     .chart-area {
         position: relative;
         display: flex;
@@ -50,7 +38,6 @@
         height: 60vh;
         min-height: 400px;
     }
-
     .lines {
         position: absolute;
         width: 100%;
@@ -63,25 +50,9 @@
     .y-axis {
         width: 6em;
     }
-
     .bars-area {
         display: flex;
         flex: 8;
         gap: 0.3em;
-    }
-
-    .timestamp {
-        margin-top: 1em;
-        display: flex;
-        flex: 8;
-        gap: 0.3em;
-    }
-
-    .timestamp-area {
-        position: relative;
-        display: flex;
-        width: 80vw;
-        min-width: 600px;
-        height: 4vh;
     }
 </style>
