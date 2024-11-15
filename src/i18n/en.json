@@ -7,6 +7,7 @@
   },
   "unitOfMeasure": "c/kWh",
   "units": {
+    "eur": "€",
     "cents": "c",
     "kWh": "kWh"
   },

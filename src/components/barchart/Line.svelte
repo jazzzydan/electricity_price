@@ -5,7 +5,7 @@
 </script>
 
 <div class="bar-chart">
-    <p class="y-axis-value">{yAxisValue.toFixed(0)} {t.units.cents}/{t.units.kWh}</p>
+    <p class="y-axis-value">{yAxisValue.toFixed(1)} {t.units.cents}/{t.units.kWh}</p>
     <div class="dashed-line"></div>
 </div>
 

@@ -16,3 +16,6 @@ export function convertTimestamp(timestamp: number): number {
     const date = new Date(timestamp * 1000);
     return date.getHours();
 }
+export function getPriceByHour(hour: number, priceDataForCountry: PricePair[]): number {
+    return Object.values(priceDataForCountry)[hour].price / 100
+}

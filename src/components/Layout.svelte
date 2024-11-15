@@ -4,21 +4,17 @@
     import BarChart from "./barchart/BarChart.svelte"
     import LoadingBar from "./barchart/LoadingBar.svelte"
     import {getCountries, getPriceDataForCountry} from "../utilities/dataMapper"
-    import {
-        type ApiResponse, type CountryCode,
-        exportElectricityPrices, type PricePair,
-    } from "../utilities/apiClient"
+    import {type ApiResponse, type CountryCode, exportElectricityPrices, type PricePair,} from "../utilities/apiClient"
     import {arePricesForToday, type ISODate} from "../utilities/dates"
     import {t} from "../i18n"
     import LanguageSelector from "./selectors/LanguageSelector.svelte"
     import CurrentPrice from "./selectors/CurrentPrice.svelte"
     import Calculator from "./calculator/Calculator.svelte"
-    import CalculatedOutput from "./calculator/CalculatedOutput.svelte"
 
-    export let priceDataForCountry: PricePair[] = []
-    export let listOfCountries: CountryCode[] = []
-    export let countryCode: CountryCode
-    export let date: ISODate
+    let priceDataForCountry: PricePair[] = []
+    let listOfCountries: CountryCode[] = []
+    let countryCode: CountryCode
+    let date: ISODate
     let isToday: boolean
     let fetchedData: ApiResponse | null = null
     let loading: boolean
@@ -93,7 +89,7 @@
         <CountrySelector {listOfCountries} bind:countryCode/>
     </div>
     <div>
-        <Calculator/>
+        <Calculator {priceDataForCountry}/>
     </div>
 </main>
 

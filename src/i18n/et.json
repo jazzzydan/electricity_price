@@ -7,6 +7,7 @@
   },
   "unitOfMeasure": "senti/kWh",
   "units": {
+    "eur": "€",
     "cents": "s",
     "kWh": "kWh"
   },

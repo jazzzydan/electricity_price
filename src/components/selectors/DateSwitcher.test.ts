@@ -1,6 +1,6 @@
 import DateSwitcher from "./DateSwitcher.svelte";
 import {expect, test} from "vitest";
-import {type ISODate, today, toISODate, tomorrow} from "../../utilities/dates";
+import {today, tomorrow} from "../../utilities/dates";
 import {fireEvent, render} from "@testing-library/svelte";
 
 test('initial date is today', () => {
