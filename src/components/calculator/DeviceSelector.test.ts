@@ -4,17 +4,12 @@ import DeviceSelector from "./DeviceSelector.svelte";
 import { t } from "../../i18n";
 
 describe('DeviceSelector', () => {
-    it('renders the option to choose device',()=>{
+    it('chooses the first device by default',() => {
         const {container} = render(DeviceSelector)
         const select = container.querySelector('select')
 
         expect(select).toBeInTheDocument()
-    })
-
-    it('renders select element with list of devices', () => {
-        const {getAllByRole} = render(DeviceSelector)
-        const devices = getAllByRole('option') as HTMLOptionElement[]
-
-        expect(devices).toHaveLength(Object.keys(t.devices).length)
+        expect(select!.value).to.eq(Object.keys(t.devices)[0])
+        expect(select!.options).toHaveLength(Object.keys(t.devices).length)
     })
 })

@@ -16,3 +16,12 @@ export function convertTimestamp(timestamp: number): number {
     const date = new Date(timestamp * 1000);
     return date.getHours();
 }
+export function getPriceByHour(hour: number, priceDataForCountry: PricePair[]): number {
+    const pricePair = priceDataForCountry.find(pair => pair.timestamp === hour);
+    if (!pricePair) {
+        console.error(`No price found for hour: ${hour}`);
+        return 0;
+    }
+
+    return pricePair.price / 100;
+}

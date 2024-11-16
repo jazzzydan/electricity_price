@@ -1,5 +1,5 @@
-import {describe, expect, test} from "vitest";
-import {getCountries, getPriceDataForCountry} from "./dataMapper";
+import {describe, expect, it, test} from "vitest";
+import {getCountries, getPriceByHour, getPriceDataForCountry} from "./dataMapper";
 import type {ApiResponse, CountryCode, PricesByCountry} from "./apiClient";
 
 describe('DataMapper', () => {
@@ -18,19 +18,27 @@ describe('DataMapper', () => {
         } as PricesByCountry
     }
 
-    test('getCountries() return list of countries', () => {
+    it('getCountries() return list of countries', () => {
         //Act
         const countries = getCountries(testApiResponse)
         //Assert
         expect(countries).toEqual(['ee', 'lv'])
     })
 
-    test('getPriceDataForCountry() returns pricePair with hour and price eur c/kWh', () => {
+    it('getPriceDataForCountry() returns pricePair with hour and price eur c/kWh', () => {
         //Arrange 2
         const countryCode = 'ee' as CountryCode
         //Act
         const pricePairs = getPriceDataForCountry(testApiResponse, countryCode)
         //Assert
         expect(pricePairs).toEqual([{"price": 7.48, "timestamp": 13}, {"price": 8.92, "timestamp": 14}])
+    })
+
+    it('returns price in EUR based on provided hour', () => {
+        const countryCode = 'ee' as CountryCode
+        const pricePairs = getPriceDataForCountry(testApiResponse, countryCode)
+        const price = getPriceByHour(13, pricePairs)
+
+        expect(price).toEqual(0.0748)
     })
 })

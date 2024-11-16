@@ -1,47 +1,46 @@
 <script lang="ts">
-    import DateSwitcher from "./selectors/DateSwitcher.svelte";
-    import CountrySelector from "./selectors/CountrySelector.svelte";
-    import BarChart from "./barchart/BarChart.svelte";
-    import LoadingBar from "./barchart/LoadingBar.svelte";
-    import {getCountries, getPriceDataForCountry} from "../utilities/dataMapper";
-    import {
-        type ApiResponse, type CountryCode,
-        exportElectricityPrices, type PricePair,
-    } from "../utilities/apiClient";
-    import type {ISODate} from "../utilities/dates";
-    import {t} from "../i18n";
-    import LanguageSelector from "./selectors/LanguageSelector.svelte";
-    import CurrentPrice from "./selectors/CurrentPrice.svelte";
-    import Calculator from "./calculator/Calculator.svelte";
+    import DateSwitcher from "./selectors/DateSwitcher.svelte"
+    import CountrySelector from "./selectors/CountrySelector.svelte"
+    import BarChart from "./barchart/BarChart.svelte"
+    import LoadingBar from "./barchart/LoadingBar.svelte"
+    import {getCountries, getPriceDataForCountry} from "../utilities/dataMapper"
+    import {type ApiResponse, type CountryCode, exportElectricityPrices, type PricePair,} from "../utilities/apiClient"
+    import {arePricesForToday, type ISODate} from "../utilities/dates"
+    import {t} from "../i18n"
+    import LanguageSelector from "./selectors/LanguageSelector.svelte"
+    import CurrentPrice from "./selectors/CurrentPrice.svelte"
+    import Calculator from "./calculator/Calculator.svelte"
 
-    export let priceDataForCountry: PricePair[] = [];
-    export let listOfCountries: CountryCode[] = [];
-    export let countryCode: CountryCode;
-    export let date: ISODate;
-    let fetchedData: ApiResponse | null = null;
+    let priceDataForCountry: PricePair[] = []
+    let listOfCountries: CountryCode[] = []
+    let countryCode: CountryCode
+    let date: ISODate
+    let isToday: boolean
+    let fetchedData: ApiResponse | null = null
     let loading: boolean
     let dataIsAvailable: boolean
 
     //TODO: implement "delayed loading" to show loading bar with short delay
 
     async function electricityPricesDispatcher(date: ISODate) {
-        loading = true;
-        dataIsAvailable = false;
+        loading = true
+        dataIsAvailable = false
         try {
-            fetchedData = await exportElectricityPrices(date);
-            listOfCountries = getCountries(fetchedData);
+            fetchedData = await exportElectricityPrices(date)
+            listOfCountries = getCountries(fetchedData)
+            isToday = arePricesForToday(fetchedData)
             if (isInitialFetch()) {
-                countryCode = listOfCountries[0];
+                countryCode = listOfCountries[0]
             }
-            priceDataForCountry = getPriceDataForCountry(fetchedData, countryCode);
+            priceDataForCountry = getPriceDataForCountry(fetchedData, countryCode)
 
             if (priceDataForCountry.length > 1) {
-                dataIsAvailable = true;
+                dataIsAvailable = true
             }
         } catch (error) {
-            dataIsAvailable = false;
+            dataIsAvailable = false
         } finally {
-            loading = false;
+            loading = false
         }
     }
 
@@ -78,7 +77,7 @@
                 <LoadingBar/>
             </div>
         {:else if dataIsAvailable}
-            <BarChart {priceDataForCountry}/>
+            <BarChart {priceDataForCountry} {isToday}/>
         {:else}
             <div>
                 <p>{t.errorMessage.noPricesAvailable}</p>
@@ -90,7 +89,7 @@
         <CountrySelector {listOfCountries} bind:countryCode/>
     </div>
     <div>
-        <Calculator/>
+        <Calculator {priceDataForCountry}/>
     </div>
 </main>
 

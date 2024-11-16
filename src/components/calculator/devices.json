@@ -1,0 +1,11 @@
+{
+  "electricalCementMixer": {
+    "watts": 4000
+  },
+  "electricalFireplace": {
+    "watts": 2500
+  },
+  "rockHammer": {
+    "watts": 10000
+  }
+}

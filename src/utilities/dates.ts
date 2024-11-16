@@ -1,3 +1,5 @@
+import type {ApiResponse} from "./apiClient";
+
 export type ISODate = `${number}-${number}-${number}`
 
 export const today: ISODate = toISODate(new Date())
@@ -15,4 +17,17 @@ export function toISODate(d: Date) {
 
 export function arePricesAvailableFor(date: ISODate) {
     return date < tomorrow
+}
+
+//TODO: check test coverage
+export function arePricesForToday(response: ApiResponse): boolean {
+    const today = new Date().toDateString()
+    let pricesDate: string = ''
+    Object.values(response.data).some(pricePairs => {
+        const middleIndex = Math.floor(pricePairs.length / 2);
+        const pair = pricePairs[middleIndex];
+        pricesDate = new Date(pair.timestamp * 1000).toDateString();
+    });
+
+    return pricesDate === today;
 }
