@@ -15,7 +15,7 @@
   "errorMessage": {
     "noPricesAvailable": "Kahjuks ei ole 24h graafiku jaoks piisavalt andmeid",
     "pricesAvailableLater": "Hinnad on saadaval pärastlõunal",
-    "currentPriceNotAvailable": "Hetke hind ei ole kättesaadav"
+    "currentPriceNotAvailable": "Hind ei ole kättesaadav"
   },
   "devices": {
     "electricalCementMixer": "Elektriline segumasin",

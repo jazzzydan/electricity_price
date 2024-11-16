@@ -19,12 +19,19 @@
     let fetchedData: ApiResponse | null = null
     let loading: boolean
     let dataIsAvailable: boolean
-
-    //TODO: implement "delayed loading" to show loading bar with short delay
+    let showLoading: boolean = false;
 
     async function electricityPricesDispatcher(date: ISODate) {
-        loading = true
-        dataIsAvailable = false
+        loading = true;
+        showLoading = false;
+
+        setTimeout(() => {
+            if (loading) {
+                showLoading = true;
+                dataIsAvailable = true;// Show loading bar after 500ms
+            }
+        }, 2000);
+
         try {
             fetchedData = await exportElectricityPrices(date)
             listOfCountries = getCountries(fetchedData)
@@ -53,7 +60,7 @@
     $: if (fetchedData && countryCode) {
         priceDataForCountry = getPriceDataForCountry(fetchedData, countryCode)
     }
-    // TODO: Fix the styling layout issue(overlapping texts) on the last available day
+
 </script>
 
 <main>
@@ -72,13 +79,13 @@
         </div>
     </div>
     <div class="chart-container">
-        {#if loading}
+        {#if loading && showLoading}
             <div class="loading-wrapper">
                 <LoadingBar/>
             </div>
         {:else if dataIsAvailable}
             <BarChart {priceDataForCountry} {isToday}/>
-        {:else}
+        {:else }
             <div>
                 <p>{t.errorMessage.noPricesAvailable}</p>
                 <p>{t.errorMessage.pricesAvailableLater}</p>
@@ -104,6 +111,9 @@
         align-items: center;
         width: 100%;
         position: relative;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 0 15px;
     }
 
     .current-price {
