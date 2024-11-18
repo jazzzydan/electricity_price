@@ -28,7 +28,7 @@
         setTimeout(() => {
             if (loading) {
                 showLoading = true;
-                dataIsAvailable = true;// Show loading bar after 500ms
+                dataIsAvailable = true;
             }
         }, 2000);
 
@@ -55,7 +55,6 @@
     }
 
     $: electricityPricesDispatcher(date)
-
     $: if (fetchedData && countryCode) {
         priceDataForCountry = getPriceDataForCountry(fetchedData, countryCode)
     }

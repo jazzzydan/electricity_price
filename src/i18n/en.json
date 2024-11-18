@@ -5,11 +5,15 @@
     "next": "Next day",
     "previous": "Previous day"
   },
+  "devicePower": "Device power:",
+  "startTime": "Start time:",
+  "endTime": "End time:",
   "unitOfMeasure": "c/kWh",
   "units": {
     "eur": "€",
     "cents": "c",
     "watt": "Watts",
+    "kW": "kW",
     "kWh": "kWh"
   },
   "errorMessage": {

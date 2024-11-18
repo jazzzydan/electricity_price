@@ -5,11 +5,15 @@
     "next": "Järgmine päev",
     "previous": "Eelmine päev"
   },
+  "devicePower": "Seadme võimsus:",
+  "startTime": "Algusaeg:",
+  "endTime": "Lõppaeg:",
   "unitOfMeasure": "senti/kWh",
   "units": {
     "eur": "€",
     "cents": "s",
     "watt": "Vatti",
+    "kW": "kW",
     "kWh": "kWh"
   },
   "errorMessage": {

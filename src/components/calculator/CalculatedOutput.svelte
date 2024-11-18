@@ -1,14 +1,17 @@
 <script lang="ts">
     import {t} from "../../i18n";
+    import devices from "./devices.json";
 
-    export let deviceId: string
+    type DeviceId = keyof typeof devices;
+
+    export let deviceId: DeviceId
     export let powerKW: number
     export let totalPrice: number
 </script>
 
 <div>
     <span>
-        {Object(t.devices)[deviceId]}:
+        {t.devices[deviceId]}:
         ({powerKW}{t.units.kWh}) /
         {(totalPrice || 0).toFixed(2)}{t.units.eur}
     </span>

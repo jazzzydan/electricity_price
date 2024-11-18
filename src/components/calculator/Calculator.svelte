@@ -7,34 +7,39 @@
     import UserInput from "./UserInput.svelte";
     import {t} from "../../i18n";
 
-    let deviceId: string
+    let deviceId: DeviceId
     let powerKW: number
     let totalPrice: number
-    let loadingTime: number = 1
+    let startTime: number = new Date().getHours()
+    let endTime: number = new Date().getHours() + 1
     let price: number
     export let priceDataForCountry: PricePair[]
+
+    type DeviceId = keyof typeof devices;
 
     type Device = {
         watts: number
     }
 
-    // TODO: rename get-function should return stuff
-    function getPower(deviceId: string) {
-        // TODO: remove Object
-        const device = Object(devices)[deviceId] as Device
+    function calculateDevicePower(deviceId: DeviceId) {
+        const device = devices[deviceId] as Device
         powerKW = device.watts / 1000
     }
 
-    function calculatePrice(power: number, price: number) {
-        totalPrice = power * loadingTime * price
+    function calculatePrice() {
+        totalPrice = 0
+        for (let i = startTime; i < endTime; i++) {
+            price = getPriceByHour(i, priceDataForCountry)
+            totalPrice += powerKW * price
+        }
     }
 
-    $: if (deviceId) getPower(deviceId)
-    $: {
-        let currentHour = new Date().getHours() + 1
-        price = getPriceByHour(currentHour, priceDataForCountry)
-        calculatePrice(powerKW, price)
+    $: if (deviceId) {
+        calculateDevicePower(deviceId)
+        calculatePrice()
     }
+    $: if (startTime | endTime) calculatePrice()
+    $: if (priceDataForCountry) calculatePrice()
 </script>
 
 <div class="calculator-container">
@@ -42,7 +47,16 @@
         <DeviceSelector bind:deviceId/>
     </div>
     <div>
-        <UserInput bind:value={powerKW} unit={t.units.watt}/>
+        <span> {t.devicePower} </span>
+        <UserInput bind:value={powerKW} unit={t.units.kW}/>
+    </div>
+    <div>
+        <span> {t.startTime} </span>
+        <UserInput bind:value={startTime} unit=": 00"/>
+    </div>
+    <div>
+        <span> {t.endTime} </span>
+        <UserInput bind:value={endTime} unit=": 00"/>
     </div>
     <div>
         <CalculatedOutput {deviceId} {powerKW} {totalPrice}/>
@@ -50,7 +64,7 @@
 </div>
 
 <style>
-    .calculator-container{
+    .calculator-container {
         display: flex;
         flex-direction: row;
         width: 100%;
