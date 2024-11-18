@@ -1,5 +1,1 @@
-// import { describe, it } from "vitest"
-//
-// describe('Calculator', ()=>{
-//
-// })
+// TODO Implement test for calculator

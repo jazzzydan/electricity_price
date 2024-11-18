@@ -4,9 +4,9 @@ import UserInput from "./UserInput.svelte";
 
 describe('UserInput', () => {
     it('displays selected devices power in watts and allows to change power', () => {
-        const {container} = render(UserInput, {value: 4000})
+        const {container} = render(UserInput, {value: 4, maxValue: 100, unit: ''})
         const inputElement = container.querySelector('input')
 
-        expect(inputElement?.value).toBe('4000')
+        expect(inputElement?.value).toBe('4')
     })
 })

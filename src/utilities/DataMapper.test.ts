@@ -3,7 +3,6 @@ import {getCountries, getPriceByHour, getPriceDataForCountry} from "./dataMapper
 import type {ApiResponse, CountryCode, PricesByCountry} from "./apiClient";
 
 describe('DataMapper', () => {
-    //Arrange 1
     const testApiResponse: ApiResponse = {
         success: true,
         data: {
@@ -19,18 +18,16 @@ describe('DataMapper', () => {
     }
 
     it('getCountries() return list of countries', () => {
-        //Act
         const countries = getCountries(testApiResponse)
-        //Assert
+
         expect(countries).toEqual(['ee', 'lv'])
     })
 
     it('getPriceDataForCountry() returns pricePair with hour and price eur c/kWh', () => {
-        //Arrange 2
         const countryCode = 'ee' as CountryCode
-        //Act
+
         const pricePairs = getPriceDataForCountry(testApiResponse, countryCode)
-        //Assert
+
         expect(pricePairs).toEqual([{"price": 7.48, "timestamp": 13}, {"price": 8.92, "timestamp": 14}])
     })
 

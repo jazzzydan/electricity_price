@@ -3,7 +3,6 @@
 
     export let listOfCountries : CountryCode[] = []
     export let countryCode: CountryCode
-
 </script>
 
 {#each listOfCountries as country}

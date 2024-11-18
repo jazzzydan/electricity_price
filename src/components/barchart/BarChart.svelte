@@ -46,7 +46,6 @@
         flex-direction: column;
         justify-content: space-between;
     }
-
     .y-axis {
         width: 6em;
     }

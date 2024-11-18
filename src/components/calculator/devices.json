@@ -1,9 +1,21 @@
 {
-  "electricalCementMixer": {
-    "watts": 4000
+  "wiFiToaster": {
+    "watts": 1000
   },
-  "electricalFireplace": {
-    "watts": 2500
+  "usbPoweredPetRock": {
+    "watts": 300
+  },
+  "electricBananaPeeler": {
+    "watts": 700
+  },
+  "musicalToiletSeat": {
+    "watts": 300
+  },
+  "selfStirringPorridgePot": {
+    "watts": 1200
+  },
+  "electricalCementMixer": {
+    "watts": 12000
   },
   "rockHammer": {
     "watts": 10000

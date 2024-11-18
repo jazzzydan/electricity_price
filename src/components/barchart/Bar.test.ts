@@ -23,8 +23,8 @@ describe('Bar.svelte', () => {
             isToday: true
         })
         const bar = container.querySelector('.bar')
-        const computedStyle = getComputedStyle(bar!);
+        const computedStyle = getComputedStyle(bar!)
 
-        expect(computedStyle.transform).toBe('scaleY(-10) scaleX(1)');
+        expect(computedStyle.transform).toBe('scaleY(-10) scaleX(1)')
     })
 })

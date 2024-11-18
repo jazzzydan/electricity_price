@@ -19,7 +19,6 @@ export function arePricesAvailableFor(date: ISODate) {
     return date < tomorrow
 }
 
-//TODO: check test coverage
 export function arePricesForToday(response: ApiResponse): boolean {
     const today = new Date().toDateString()
     let pricesDate: string = ''

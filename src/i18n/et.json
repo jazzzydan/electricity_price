@@ -19,13 +19,20 @@
   "errorMessage": {
     "noPricesAvailable": "Kahjuks ei ole 24h graafiku jaoks piisavalt andmeid",
     "pricesAvailableLater": "Hinnad on saadaval pärastlõunal",
-    "currentPriceNotAvailable": "Hetke hind ei ole kättesaadav"
+    "currentPriceNotAvailable": "Hetke hind ei ole kättesaadav",
+    "startTimeGreaterThenEndTime": "Algusaeg ei saa olla enne lõppaega"
   },
   "devices": {
-    "electricalCementMixer": "Elektriline segumasin",
-    "electricalFireplace": "Elktriline kamin",
+    "electricBananaPeeler": "Elektriline Banaani koorija",
+    "wiFiToaster": "Wi-Fi Röster",
+    "usbPoweredPetRock": "USB-laetav lemmik kivi",
+    "musicalToiletSeat": "Laulev prill-laud",
+    "selfStirringPorridgePot": "Isesegav pudrukauss",
+    "electricalCementMixer": "Elektriline tsemendisegaja",
     "rockHammer": "Elektriline vasar"
   },
+  "calculatorTitle": "Arvuta seadme elektri hind",
+  "priceForUsage": "Elektri maksumus:",
   "languages": {
     "en": "English",
     "et": "Eesti keel"

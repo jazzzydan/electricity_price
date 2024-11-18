@@ -1,5 +1,4 @@
 <script lang="ts">
-
     import {type CountryCode, exportElectricityPrices, type PricePair} from "../../utilities/apiClient";
     import {today} from "../../utilities/dates";
     import {getPriceDataForCountry} from "../../utilities/dataMapper";
@@ -9,14 +8,14 @@
     let priceDataForCountry: PricePair[] = []
     let currentPrice: number | null = null
 
-    async function getCurrentPrice(){
-        if(!countryCode) {
+    async function getCurrentPrice() {
+        if (!countryCode) {
             console.error("Country is not selected")
             return
         }
-        try{
+        try {
             const fetchedData = await exportElectricityPrices(today)
-            priceDataForCountry = getPriceDataForCountry(fetchedData,countryCode)
+            priceDataForCountry = getPriceDataForCountry(fetchedData, countryCode)
             updateCurrentPrice()
         } catch (error) {
             console.error("Failed to retrieve price: ", error)
@@ -27,6 +26,7 @@
         const date = new Date()
         return date.getHours()
     }
+
     function updateCurrentPrice() {
         const currentHour = getCurrentHour();
         const currentPricePair = priceDataForCountry.find(pair => {
@@ -39,9 +39,6 @@
     $: if (countryCode) {
         getCurrentPrice()
     }
-
-    //TODO: check test coverage
-
 </script>
 
 <div class="current-price">

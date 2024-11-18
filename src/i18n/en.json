@@ -19,13 +19,20 @@
   "errorMessage": {
     "noPricesAvailable": "Sorry... Not enough data for 24h chart",
     "pricesAvailableLater": "Prices will be available later in the afternoon",
-    "currentPriceNotAvailable": "Current price not available"
+    "currentPriceNotAvailable": "Current price not available",
+    "startTimeGreaterThenEndTime": "Starting time can't be later then ending time"
   },
   "devices": {
+    "electricBananaPeeler": "Electrical Banana Peeler",
+    "wiFiToaster": "Wi-Fi Toaster",
+    "usbPoweredPetRock": "USB Powered Pet Rock",
+    "musicalToiletSeat": "Electrical Toilet Seat",
+    "selfStirringPorridgePot": "Self Stirring Porridge Pot",
     "electricalCementMixer": "Electrical cement mixer",
-    "electricalFireplace": "Electrical fireplace",
     "rockHammer": "Rock Hammer"
   },
+  "calculatorTitle": "Calculate electricity price for device",
+  "priceForUsage": "Total Price:",
   "languages": {
     "en": "English",
     "et": "Eesti keel"

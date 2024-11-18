@@ -10,11 +10,10 @@ describe('CalculatedOutput', () => {
         expect(span).toBeInTheDocument()
     })
 
-    it('outputs selected device id', () => {
-        const {container} = render(CalculatedOutput, {deviceId: 'rockHammer', powerKW: 10, totalPrice: 0.5})
+    it('outputs selected device usage price', () => {
+        const {container} = render(CalculatedOutput, {totalPrice: 0.5})
         const span = container.querySelector('span')
 
-        expect(span).toHaveTextContent('10kW')
         expect(span).toHaveTextContent('0.50€')
     })
 })

@@ -3,12 +3,12 @@
     import {toISODate} from "../../utilities/dates.js";
     import {t} from "../../i18n";
 
-    export let date: ISODate = today;
+    export let date: ISODate = today
 
     function incrementDate(days: number) {
-        const d = new Date(date);
-        d.setDate(d.getDate() + days);
-        date = toISODate(d);
+        const d = new Date(date)
+        d.setDate(d.getDate() + days)
+        date = toISODate(d)
     }
 </script>
 
@@ -27,7 +27,6 @@
         font-size: 16px;
         padding: 0 12px;
     }
-
     button {
         margin: 0 8px;
     }

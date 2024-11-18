@@ -1,10 +1,11 @@
 <script lang="ts">
     export let value: number
     export let unit: string
+    export let maxValue: number
 </script>
 
 <label class="input-container">
-    <input type="number" step="1" bind:value min="0"/>
+    <input type="number" step="1" bind:value min="0" max={maxValue}/>
     <span class="unit">{unit}</span>
 </label>
 

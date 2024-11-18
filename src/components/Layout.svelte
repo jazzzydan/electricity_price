@@ -13,24 +13,24 @@
 
     let priceDataForCountry: PricePair[] = []
     let listOfCountries: CountryCode[] = []
-    let countryCode: CountryCode
-    let date: ISODate
     let isToday: boolean
     let fetchedData: ApiResponse | null = null
     let loading: boolean
     let dataIsAvailable: boolean
-    let showLoading: boolean = false;
+    let showLoading: boolean = false
+    export let countryCode: CountryCode
+    export let date: ISODate
 
     async function electricityPricesDispatcher(date: ISODate) {
-        loading = true;
-        showLoading = false;
+        loading = true
+        showLoading = false
 
         setTimeout(() => {
             if (loading) {
-                showLoading = true;
-                dataIsAvailable = true;
+                showLoading = true
+                dataIsAvailable = true
             }
-        }, 2000);
+        }, 2000)
 
         try {
             fetchedData = await exportElectricityPrices(date)
@@ -65,6 +65,9 @@
     <div>
         <h2>{t.title}</h2>
     </div>
+    <div>
+        <CountrySelector {listOfCountries} bind:countryCode/>
+    </div>
     <div class="selectors-container">
         <div class="current-price">
             <CurrentPrice {countryCode}/>
@@ -91,9 +94,6 @@
         {/if}
     </div>
     <div>
-        <CountrySelector {listOfCountries} bind:countryCode/>
-    </div>
-    <div>
         <Calculator {priceDataForCountry}/>
     </div>
 </main>
@@ -102,7 +102,6 @@
     div {
         margin-bottom: 1em;
     }
-
     .selectors-container {
         display: flex;
         justify-content: center;
@@ -113,26 +112,21 @@
         flex-wrap: wrap;
         padding: 0 15px;
     }
-
     .current-price {
         position: absolute;
         left: 0;
     }
-
     .date-selector {
         text-align: center;
         flex-grow: 1;
     }
-
     .language-selector {
         position: absolute;
         right: 0;
     }
-
     .chart-container {
         height: 64vh;
     }
-
     .loading-wrapper {
         width: 100%;
         display: flex;
