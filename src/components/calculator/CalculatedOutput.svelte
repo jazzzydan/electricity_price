@@ -5,9 +5,8 @@
 </script>
 
 <div>
-    <span>
-        {t.priceForUsage}
-        {(totalPrice || 0).toFixed(2)}{t.units.eur}
+    <span class="output">
+        {t.priceForUsage} {(totalPrice || 0).toFixed(2)}{t.units.eur}
     </span>
 </div>
 

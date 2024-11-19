@@ -10,15 +10,14 @@ describe('BarChart', () => {
         data: {
             'ee': []
         }
-    } as ApiResponse
+    } as unknown as ApiResponse
 
     for (let i = 0; i < 25; i++) {
         testResponseData.data.ee.push({
             timestamp: i + 1730890800,
             price: i + 74.8300
-        }) as PricePair
+        }) as unknown as PricePair
     }
-    console.log(testResponseData)
 
     it('should render the chart with 25 bars on the night of time switch form summer to winter time', async () => {
         const priceDataForCountry = getPriceDataForCountry(testResponseData, 'ee')

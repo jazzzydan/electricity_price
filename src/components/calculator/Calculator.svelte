@@ -8,11 +8,11 @@
     import {t} from "../../i18n"
 
     let deviceId: DeviceId
-    let powerKW: number
     let totalPrice: number
-    let startTime: number = new Date().getHours()
-    let endTime: number = new Date().getHours() + 1
     let price: number
+    export let powerKW: number
+    export let startTime: number = new Date().getHours()
+    export let endTime: number = new Date().getHours() + 1
     export let priceDataForCountry: PricePair[]
 
     type DeviceId = keyof typeof devices
